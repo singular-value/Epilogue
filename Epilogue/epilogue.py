@@ -53,7 +53,7 @@ class CertificatePage(webapp2.RequestHandler):
         if me.did_deathcertificate:
             self.redirect("/")
         template = JINJA_ENVIRONMENT.get_template('certificate.html')
-        self.response.write(template.render({'message': "certificate"}))
+        self.response.write(template.render({'message': "Certificate"}))
 
 class CertificateEnter(webapp2.RequestHandler):
     def get(self):
