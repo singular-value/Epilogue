@@ -58,7 +58,7 @@ class CertificatePage(webapp2.RequestHandler):
         if me.did_deathcertificate:
             self.redirect("/")
         template = JINJA_ENVIRONMENT.get_template('certificate.html')
-        self.response.write(template.render({'message': "certificate"}))
+        self.response.write(template.render({'message': "Certificate"}))
 
 class CertificateEnter(webapp2.RequestHandler):
     def get(self):
@@ -170,7 +170,7 @@ class SocialPage(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('social.html')
         params = {
-            'message': "social media cancellation",
+            'message': "Social Media Cancellation",
             'user': me,
             'sent': self.request.get('sent', "")
         }
@@ -182,7 +182,8 @@ class FinancePage(webapp2.RequestHandler):
         params = {
             'sent': self.request.get('submit', ""),
             'message': "finance",
-            'page_num':1
+            'page_num':1,
+            'job_id': self.request.get('job',"")
         }
 
         template = JINJA_ENVIRONMENT.get_template('finance.html')
@@ -257,7 +258,7 @@ class StoreBank(webapp2.RequestHandler):
 
         print job
 
-        self.redirect('/finance?submit=true')
+        self.redirect('/finance?submit=true&job=' + job["id"] )
 
 # stores most of the user's data
 class Store(webapp2.RequestHandler):
