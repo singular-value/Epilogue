@@ -187,6 +187,15 @@ a.deactivated {
     display: none;
 }
 
+.picture.jumbotron{
+    -webkit-background-size: cover !important;
+    color: rgba(255,255,255,.9);
+  }
+.picture.jumbotron.social{background: url("/stylesheets/img/image1.jpg") fixed;}
+.picture.jumbotron.finance{background: url("/stylesheets/img/image2.jpg") fixed;}
+.picture.jumbotron.memberships{background: url("/stylesheets/img/image3.jpg") fixed;}
+.picture.jumbotron.funeral{background: url("/stylesheets/img/image4.jpg") fixed;}
+
 /* MAIN PAGE */
 #main-logo {
     margin: 0 auto;

@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 {% block title %}Cancel Social Media{% endblock %}
 {% block main_content %}
-<div class="jumbotron">
+<div class="picture jumbotron social">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -12,19 +12,12 @@
   </div>
 </div>
 
-<style>
-  .jumbotron{
-    background: url("stylesheets/img/image1.jpg");
-    -webkit-background-size: cover;
-    color: rgba(255,255,255,.9);
-  }
-</style>
 <div class="top-margin container">
     {% if sent %}
     <div class="bs-example">
         <div class="alert alert-warning fade in" role="alert">
             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-       Snail Mail sent via Lob!
+       Snail Mail sent to {{sent}} via Lob!
     </div></div>
     {% endif %}
     <h2>Online Forms</h2>

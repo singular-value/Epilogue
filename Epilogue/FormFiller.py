@@ -11,9 +11,32 @@ from google.appengine.api import urlfetch
 head = """<html><head>
 <style>
 #iframe-form {
-position:absolute;
+position:fixed;
 right: 0;
-top: 50%;
+top: 45%;
+}
+.btn-label {
+font-family: 'Open Sans', sans-serif;
+font-size: 25px;
+font-weight: 700;
+color: #555;
+position: absolute;
+top: 30px;
+right: 130px;
+}
+.btn-primary {
+background-image: url('stylesheets/img/chevron-grey.png');
+background-repeat: no-repeat;
+background-color: transparent;
+border:none;
+height:100px;
+width:100px;
+outline:none;
+-webkit-transition: all 300ms;
+transition: all 300ms;
+}
+#iframe-form .btn-primary:hover {
+background-image: url('stylesheets/img/chevron.png');
 }
 </style><script>"""
 tail = """</script>
@@ -21,7 +44,8 @@ tail = """</script>
 <body><iframe id="the_form" width="1000px" height="800px" src="%s" onload="fill()"></iframe>
 <form id="iframe-form" method="post" action="/did-social">
   <input type="hidden" name="name" value="%s" />
-  <input type="submit" class="btn btn-primary" value="click here">
+  <div class="btn-label">CONTINUE</div>
+  <input type="submit" class="btn btn-primary" value="">
 </form>
 </body></html>"""
 
