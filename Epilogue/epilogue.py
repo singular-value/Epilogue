@@ -13,15 +13,18 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
+
 class MainPage(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('mainpageform.html')
         self.response.write(template.render({'message': "index"}))
 
+
 class CertificatePage(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('certificate.html')
         self.response.write(template.render({'message': "certificate"}))
+
 
 class LoginPage(webapp2.RequestHandler):
     def get(self):
@@ -71,6 +74,7 @@ class LoginPage(webapp2.RequestHandler):
 
         self.response.write(template.render({'message': "login"}))
 
+
 class FuneralPage(webapp2.RequestHandler):
     def get(self):
         #print 'FUCK YES THIS WORKS: ' + me.dead_name
@@ -80,7 +84,7 @@ class FuneralPage(webapp2.RequestHandler):
 
 class SocialPage(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('index.html')
+        template = JINJA_ENVIRONMENT.get_template('social.html')
         self.response.write(template.render({'message': "social media cancellation"}))
 
 
