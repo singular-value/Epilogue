@@ -427,10 +427,11 @@ class GooglePage(webapp2.RequestHandler):
         self.redirect('/social?sent=google')
 
 class DropBoxPay(webapp2.RequestHandler):
+    def get(self):
         user = users.get_current_user()
         if not user:
             self.redirect(users.create_login_url(self.request.uri))
-    def get(self):
+
         stripebutton = """<form action="" method="POST">
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
