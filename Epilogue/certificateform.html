@@ -3,10 +3,11 @@
 <div class="container">
  <div class="row">
    <div class="col-md-12">
-    <form id="form_register" action="/store" method="post" class="well form">
-        <fieldset>
-            <input type="text" name="name" value="{{ user.dead_name }}"><br>
-        </fieldset>
+     <h1>Certificate Form</h1>
+    <form id="form_register" action="/store" method="post" class="form">
+        <div class="form-group">
+            <input type="text" class="form-control" name="name" value="{{ user.dead_name }}"><br>
+        </div>
     </form>
   </div>
 </div>

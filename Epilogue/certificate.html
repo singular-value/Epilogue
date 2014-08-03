@@ -15,4 +15,12 @@
 
 {% block jslib %}
 <script src="/scripts/dropzone.js"></script>
+<script>
+  Dropzone.options.dropzone = {
+    init: function() {
+      this.on("complete", function(file) {
+       window.location = "/certificate-form";});
+    }
+  };
+</script>
 {% endblock %}
