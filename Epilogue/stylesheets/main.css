@@ -29,6 +29,10 @@ h1, h2, h3, h4, h5 {
     background-color:white;
 }
 
+.top-margin {
+    padding-top:50px;
+    padding-bottom:30px;
+}
 
 
 .dropzone,

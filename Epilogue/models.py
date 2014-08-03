@@ -38,3 +38,5 @@ class User(User):
     state= ndb.StringProperty()
     country= ndb.StringProperty()
     zip= ndb.StringProperty()
+
+    company = ndb.StringProperty()
