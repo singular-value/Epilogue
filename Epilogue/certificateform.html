@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+{% block main_content %}
+<div class="container">
+ <div class="row">
+   <div class="col-md-12">
+    <form id="form_register" action="/store" method="post" class="well form">
+        <fieldset>
+            <input type="text" name="name" value="{{ user.dead_name }}"><br>
+        </fieldset>
+    </form>
+  </div>
+</div>
+{% endblock %}
