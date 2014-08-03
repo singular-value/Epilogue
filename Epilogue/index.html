@@ -15,14 +15,12 @@
 
     <!-- Custom styles for this template -->
     <link href="/stylesheets/main.css" rel="stylesheet">
-    <script src="/scripts/meny.js"></script>
-
   </head>
 g
   <body>
 
     <!-- MENY MENU -->
-    <div class="meny">
+    <nav id="slide-menu">
       <ul>
         <a href="/"><li>Main</li></a>
         <a href="/certificate"><li>Certificate</li></a>
@@ -31,10 +29,11 @@ g
         <a href="/finance"><li>Finance</li></a>
         <a href="/memberships"><li>Membership</li></a>
       </ul>
-    </div>
+    </nav>
 
     <!-- MENY CONTENTS -->
-    <div class="contents">
+    <div id="content">
+      <div class="menu-trigger"></div>
 
       {% block main_content %}
       <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -72,6 +71,5 @@ g
     <script src="/scripts/app.js"></script>
     {% block jslib %}
     {% endblock %}
-
 
 </body></html>
