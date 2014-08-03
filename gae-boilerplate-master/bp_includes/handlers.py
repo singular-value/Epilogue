@@ -1472,3 +1472,8 @@ class CrossDomainHandler(BaseHandler):
             return text.replace("{{ %s }}" % key, params[key])
 
         self.response.write(reduce(set_variables, params, open("bp_content/themes/%s/templates/seo/crossdomain.xml" % self.get_theme).read()))
+
+class FuneralRequestHandler(BaseHandler):
+    def get(self):
+        params = {'message': "login"}
+        return self.render_template('main.html', **params)

@@ -31,7 +31,12 @@ _routes = [
     RedirectRoute('/password-reset/', handlers.PasswordResetHandler, name='password-reset', strict_slash=True),
     RedirectRoute('/password-reset/<user_id>/<token>', handlers.PasswordResetCompleteHandler, name='password-reset-check', strict_slash=True),
     RedirectRoute('/change-email/<user_id>/<encoded_email>/<token>', handlers.EmailChangedCompleteHandler, name='email-changed-check', strict_slash=True),
-    RedirectRoute('/', handlers.HomeRequestHandler, name='home', strict_slash=True)
+    RedirectRoute('/', handlers.HomeRequestHandler, name='home', strict_slash=True),
+
+    RedirectRoute('/funeral', handlers.FuneralRequestHandler, name='funeral', strict_slash=True)
+    RedirectRoute('/social', handlers.FuneralRequestHandler, name='funeral', strict_slash=True)
+    RedirectRoute('/finance', handlers.FuneralRequestHandler, name='funeral', strict_slash=True)
+    RedirectRoute('/memberships', handlers.FuneralRequestHandler, name='funeral', strict_slash=True)
 ]
 
 def get_routes():

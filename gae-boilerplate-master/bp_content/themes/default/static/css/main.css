@@ -1,0 +1,30 @@
+body {
+  background-color: #555;
+}
+p, a, li, div{
+  font-family: 'Lora', serif;
+}
+h1, h2, h3, h4, h5 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.meny {
+    background-color: #555;
+    z-index: 300000 !important;
+}
+.meny ul {
+    list-style-type: none;
+    padding: 0;
+}
+.meny li {
+    padding: 15px 30px;
+    margin-bottom: 1px;
+    color: #bbb;
+}
+.meny li:hover {
+    background-color: #666;
+}
+
+.contents {
+    background-color:white;
+}

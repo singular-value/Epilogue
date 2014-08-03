@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+{% block main_content %}
+<div class="container">
+ <div class="row">
+   <div class="col-md-12">
+    <h1>certificate</h1>
+    upload death certificate by dragging an image file below.
+     <form action="/certificate-upload"
+      class="dropzone"
+      id="dropzone"></form>
+   </div>
+ </div>
+</div>
+{% endblock %}
+
+{% block jslib %}
+<script src="/scripts/dropzone.js"></script>
+{% endblock %}
