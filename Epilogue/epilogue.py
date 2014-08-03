@@ -44,7 +44,7 @@ class MainPage2(webapp2.RequestHandler):
     def get(self):
         if me.did_deathcertificate:
             self.redirect("/certificate-form")
-        template = JINJA_ENVIRONMENT.get_template('mainpageform.html')
+        template = JINJA_ENVIRONMENT.get_template('frontpage.html')
         self.response.write(template.render({'message': "index"}))
 
 

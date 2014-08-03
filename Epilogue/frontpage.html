@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+{% block title %}Welcome.{% endblock %}
+{% block main_content %}
+ <div class="container">
+   <div class="row">
+     <div class="col-md-12">
+      <h1>We're Sorry for your loss.</h1>
+         <h2>While you take care of your loved one, let us take care of you.</h2>
+     </div>
+   </div>
+   <div class="row">
+      <div class="col-md-12">
+          <h4> We know that the death of a loved one comes with many responsibilities and
+          tasks. Thats why we created Epilogue, a service that will automate the process so you can focus on what's important. </h4>
+      </div>
+   </div>
+
+   <div>
+       <h2> Start Here. </h2>
+        <form action='/certificate'> <button type="submit"  class="btn btn-primary">Upload Death Certificate</button></form>
+   </div>
+ </div>
+
+{% endblock %}
+{% block jslib %}
+<script>
+  pageNum = {{ page_num }};
+</script>
+<script src="/scripts/flow.js"></script>
+{% endblock %}
