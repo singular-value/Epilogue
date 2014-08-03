@@ -174,8 +174,14 @@ class SocialPage(webapp2.RequestHandler):
 
 class FinancePage(webapp2.RequestHandler):
     def get(self):
+        params = {
+            'sent': self.request.get('submit', ""),
+            'message': "finance",
+            'page_num':1
+        }
+
         template = JINJA_ENVIRONMENT.get_template('finance.html')
-        self.response.write(template.render({'message': "finance", 'page_num':1}))
+        self.response.write(template.render(params))
 
 class FinancePage2(webapp2.RequestHandler):
     def get(self):
@@ -191,9 +197,62 @@ class MembershipPage(webapp2.RequestHandler):
 
 #stores which banks the user uses
 class StoreBank(webapp2.RequestHandler):
-    def post(self):
+    def get(self):
         me.bank = self.request.get('bank')
-        self.redirect('/bank2')
+        yourAddress = {}
+        if me.bank == 'Chase':
+            yourAddress = lob.Address.create(
+                name='National Bank By Mail',
+                address_line1='1600 Amphitheatre Parkway',
+                address_city='Louisville',
+                address_state='KY',
+                address_country='US',
+                address_zip='40233')
+        elif me.bank == 'Bank of America':
+            yourAddress = lob.Address.create(
+                name='Bank of America',
+                address_line1='Suite 6001 P.O. Box 803126',
+                address_city='Dallas',
+                address_state='TX',
+                address_country='US',
+                address_zip='75380')
+
+        myAddress = lob.Address.create(
+            name='test',
+            address_line1=me.resident_address,
+            address_city=me.resident_town,
+            address_state='CA',
+            address_country='US',
+            address_zip=me.resident_zip
+        )
+
+
+
+        # pre-made letter that will be sent to businesses
+        letter = lob.Object.create(
+            name='Letter',
+            file=open('Letter.pdf','rb'),
+            setting_id='100',
+            quantity=1
+        )
+
+        certificate = lob.Object.create(
+            name='Death Certificate',
+            file=open('Letter.pdf','rb'),
+            setting_id='100',
+            quantity=1
+        )
+
+        job = lob.Job.create(
+            name='Send out',
+            to_address=yourAddress,
+            from_address=myAddress,
+            objects = [certificate,letter]
+        )
+
+        print job
+
+        self.redirect('/finance?submit=true')
 
 # stores most of the user's data
 class Store(webapp2.RequestHandler):
