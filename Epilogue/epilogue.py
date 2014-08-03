@@ -27,21 +27,26 @@ providers = {
     # add more here
 }
 
+# THIS ENTIRE CLASS IS DEPRECATED
 class MainPage(webapp2.RequestHandler):
     def get(self):
-        user = users.get_current_user()
-        if user:  # signed in already
-            #self.response.out.write('Hello <em>%s</em>! [<a href="%s">sign out</a>]' % (
-            #    user.nickname(), users.create_logout_url(self.request.uri)))
-            self.redirect('/cert')
-        else:     # let user choose authenticator
-            self.response.out.write('Hello world! Sign in at: ')
-            for name, uri in providers.items():
-                self.response.out.write('[<a href="%s">%s</a>]' % (
-                    users.create_login_url(federated_identity=uri), name))
+        return self.redirect('/')
+#        user = users.get_current_user()
+#        if user:  # signed in already
+#            #self.response.out.write('Hello <em>%s</em>! [<a href="%s">sign out</a>]' % (
+#            #    user.nickname(), users.create_logout_url(self.request.uri)))
+#            self.redirect('/cert')
+#        else:     # let user choose authenticator
+#            self.response.out.write('Hello world! Sign in at: ')
+#            for name, uri in providers.items():
+#                self.response.out.write('[<a href="%s">%s</a>]' % (
+#                    users.create_login_url(federated_identity=uri), name))
 
 class MainPage2(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(users.create_login_url(self.request.uri)))
         if me.did_deathcertificate:
             self.redirect("/certificate-form")
         template = JINJA_ENVIRONMENT.get_template('frontpage.html')
@@ -480,8 +485,8 @@ class StripeTest(webapp2.RequestHandler):
 
 
 application = webapp2.WSGIApplication([
-    ('/', MainPage),
-    ('/cert', MainPage2),
+    ('/cert', MainPage), #<-- deprecated, ask Pranav
+    ('/', MainPage2),
     ('/login', LoginPage),
     ('/certificate', CertificatePage),
     ('/funeral', FuneralPage),
