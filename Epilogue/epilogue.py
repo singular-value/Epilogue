@@ -5,7 +5,8 @@ import jinja2
 import webapp2
 from google.appengine.api import users
 import FormFiller
-
+import stripe
+stripe.api_key = "sk_test_4W9L9sr4pWYjeOpTkPDPtugi"
 lob.api_key = 'test_3aa918f64396a4f31c68c80f3238a617d8f'
 from models import User
 me = User()
@@ -268,6 +269,35 @@ class DidSocial(webapp2.RequestHandler):
             me.did_phone = True
         self.redirect('/social')
 
+class StripeTest(webapp2.RequestHandler):
+    def get(self):
+        stripebutton = """<form action="" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_4W9LvKOHPuWXpO5h8z7v6q7D"
+    data-amount="2000"
+    data-name="Demo Site"
+    data-description="2 widgets ($20.00)"
+    data-image="/128x128.png">
+  </script>
+</form>"""
+        html = """<html><body>%s</body></head>""" % stripebutton
+        self.response.write(html)
+
+    def post(self):
+        token = self.request.get('stripeToken')
+        try:
+            charge = stripe.Charge.create(
+                amount=1000, # amount in cents, again
+                currency="usd",
+                card=token,
+                description="payinguser@example.com"
+                )
+            self.response.write(charge)
+        except stripe.CardError, e:
+            # The card has been declined
+            pass
+
 application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/cert', MainPage2),
@@ -290,5 +320,6 @@ application = webapp2.WSGIApplication([
     ('/linkedin', FormFiller.LinkedInPage),
     ('/emailoptout', FormFiller.EmailOptOutPage),
     ('/addresschange', FormFiller.AddressChangePage),
-    ('/donotcontact', FormFiller.DoNotContactPage)
+    ('/donotcontact', FormFiller.DoNotContactPage),
+    ('/stripetest', StripeTest)
 ], debug=True)
