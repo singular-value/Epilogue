@@ -191,7 +191,7 @@ class FinancePage(webapp2.RequestHandler):
     def get(self):
         params = {
             'sent': self.request.get('submit', ""),
-            'message': "finance",
+            'message': "Finance",
             'color': 'orange',
             'page_num': 1,
             'job_id': self.request.get('job', "")
