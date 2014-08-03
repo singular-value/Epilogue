@@ -27,6 +27,11 @@ providers = {
     # add more here
 }
 
+class ResetPage(webapp2.RequestHandler):
+    def get(self):
+        me = User()
+        self.response.write("Reset")
+
 # THIS ENTIRE CLASS IS DEPRECATED
 class MainPage(webapp2.RequestHandler):
     def get(self):
@@ -46,7 +51,7 @@ class MainPage2(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if not user:
-            self.redirect(users.create_login_url(users.create_login_url(self.request.uri)))
+            self.redirect(users.create_login_url(self.request.uri))
         if me.did_deathcertificate:
             self.redirect("/certificate-form")
         template = JINJA_ENVIRONMENT.get_template('frontpage.html')
@@ -186,7 +191,7 @@ class FinancePage(webapp2.RequestHandler):
     def get(self):
         params = {
             'sent': self.request.get('submit', ""),
-            'message': "finance",
+            'message': "Finance",
             'color': 'orange',
             'page_num': 1,
             'job_id': self.request.get('job', "")
@@ -294,6 +299,9 @@ class UploadCertificate(webapp2.RequestHandler):
 
 class CertificateForm(webapp2.RequestHandler):
     def get(self):
+        print me.name
+        print me.address
+        print "^INFOOOOO"
         template = JINJA_ENVIRONMENT.get_template('certificateform.html')
         self.response.write(template.render({"user": me,
                                              'color': 'yellow'}))
@@ -509,5 +517,6 @@ application = webapp2.WSGIApplication([
     ('/donotcontact', FormFiller.DoNotContactPage),
     ('/google', GooglePage),
     ('/dropbox', DropBoxPage),
-    ('/stripetest', StripeTest)
+    ('/stripetest', StripeTest),
+    ('/reset', ResetPage)
 ], debug=True)
