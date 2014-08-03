@@ -1,6 +1,6 @@
 import os, lob
 import urllib, cgi
-
+import time
 import jinja2
 import webapp2
 from google.appengine.api import users
@@ -81,6 +81,7 @@ class CertificateEnter(webapp2.RequestHandler):
         me.your_name = "Stephen Lambert"
         me.your_relationship = "Son"
         me.your_address = "1532 Willows Way, Los Altos, CA 94024"
+        time.sleep(7)
         self.redirect('/certificate-form')
 
 class LoginPage(webapp2.RequestHandler):
