@@ -252,6 +252,21 @@ class CertificateStore(webapp2.RequestHandler):
 
         self.redirect('/')
 
+class DidSocial(webapp2.RequestHandler):
+    def post(self):
+        name = self.request.get('name')
+        if name == "fb":
+            me.did_fb = True
+        elif name == "linkedin":
+            me.did_linkedin = True
+        elif name == "emailoptout":
+            me.did_email = True
+        elif name == "addresschange":
+            me.did_postoffice = True
+        elif name == "donotcontact":
+            me.did_phone = True
+        self.redirect('/social')
+
 application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/cert', MainPage2),
@@ -268,6 +283,8 @@ application = webapp2.WSGIApplication([
     ('/certificate-form', CertificateForm),
     ('/certificate-store', CertificateStore),
     ('/certificate-enter', CertificateEnter),
+
+    ('/did-social', DidSocial),
     ('/fb', FormFiller.FBPage),
     ('/linkedin', FormFiller.LinkedInPage),
     ('/emailoptout', FormFiller.EmailOptOutPage),
