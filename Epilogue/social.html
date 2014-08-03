@@ -12,6 +12,13 @@
   </div>
 </div>
 
+<style>
+  .jumbotron{
+    background: url("stylesheets/img/image1.jpg");
+    -webkit-background-size: cover;
+    color: rgba(255,255,255,.9);
+  }
+</style>
 <div class="top-margin container">
     {% if sent %}
     <div class="bs-example">
@@ -55,9 +62,17 @@
   </div>
   </div>
 
-      <h4> Sample Lob Mail</h4>
-    <a data-toggle="lightbox"><img src="/stylesheets/img/jessie_deathcert.png" class="img-responsive"></a>
-    <a data-toggle="lightbox"><img src="/stylesheets/img/Letter.png" class="img-responsive"></a>
+  <br><hr>
+
+      <h3> Sample Lob Mail</h3>
+    <div class="row lobmail">
+      <div class="col-sm-6">
+        <a data-toggle="lightbox"><img src="/stylesheets/img/jessie_deathcert.png" class="img-responsive"></a>
+      </div>
+      <div class="col-sm-6">
+        <a data-toggle="lightbox"><img src="/stylesheets/img/Letter.png" class="img-responsive"></a>
+      </div>
+    </div>
 
 </div>
 {% endblock %}
