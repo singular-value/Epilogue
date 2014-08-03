@@ -182,7 +182,8 @@ class SocialPage(webapp2.RequestHandler):
             'message': "Social Media Cancellation",
             'user': me,
             'sent': self.request.get('sent', ""),
-            'color': 'gold'
+            'color': 'gold',
+            'sent': self.request.get('sent',"")
         }
         self.response.write(template.render(params))
 
@@ -194,7 +195,8 @@ class FinancePage(webapp2.RequestHandler):
             'message': "Finance",
             'color': 'orange',
             'page_num': 1,
-            'job_id': self.request.get('job', "")
+            'job_id': self.request.get('job', ""),
+            'to': self.request.get('to', "")
         }
 
         template = JINJA_ENVIRONMENT.get_template('finance.html')
@@ -220,7 +222,9 @@ class StoreBank(webapp2.RequestHandler):
     def get(self):
         me.bank = self.request.get('bank')
         yourAddress = {}
+        toWho = ''
         if me.bank == 'Chase':
+            toWho = 'Chase'
             yourAddress = lob.Address.create(
                 name='National Bank By Mail',
                 address_line1='1600 Amphitheatre Parkway',
@@ -229,6 +233,7 @@ class StoreBank(webapp2.RequestHandler):
                 address_country='US',
                 address_zip='40233')
         elif me.bank == 'Bank of America':
+            toWho = 'Bank of America'
             yourAddress = lob.Address.create(
                 name='Bank of America',
                 address_line1='Suite 6001 P.O. Box 803126',
@@ -272,7 +277,7 @@ class StoreBank(webapp2.RequestHandler):
 
         print job
 
-        self.redirect('/finance?submit=true&job=' + job["id"] )
+        self.redirect('/finance?submit=true&job=' + job["id"] + '&to=' + toWho)
 
 # stores most of the user's data
 class Store(webapp2.RequestHandler):
