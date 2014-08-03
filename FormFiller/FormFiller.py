@@ -27,7 +27,21 @@ class MainPage(webapp2.RequestHandler):
 class LinkedInPage(webapp2.RequestHandler):
     def get(self):
         url = "static/linkedin.htm"
-        self.response.write("""blah""" % url)
+        self.response.write("""<html>
+<head>
+<script>
+fill = function() {
+var iframe = document.getElementById('the_form');
+var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+form = innerDoc.forms[0]
+form["ds$hldrBdy$Member_UserName"].value="%s"
+form["ds$hldrBdy$Member_Email"].value="%s"
+}
+</script>
+</head>
+<body><iframe id="the_form" width="1000px" height="800px" src="%s" onload="fill()"></iframe>
+</body></html>""" % ("Stephen Lambert", "epiloguesemail@pilog.ue", url))
+
 
 class FBPage(webapp2.RequestHandler):
     def get(self):
@@ -56,5 +70,5 @@ form["Field243993725684212"].value="%s"
 #        self.response.write(result.content.replace("<head>", """<head><base href="%s">""" % url))
 
 application = webapp2.WSGIApplication([
-    ('/', MainPage), ('/fb', FBPage)
+    ('/', MainPage), ('/fb', FBPage), ('/linkedin', LinkedInPage)
 ], debug=True)
