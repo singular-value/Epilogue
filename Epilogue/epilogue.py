@@ -165,7 +165,7 @@ class SocialPage(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('social.html')
         params = {
-            'message': "social media cancellation",
+            'message': "Social Media Cancellation",
             'user': me,
             'sent': self.request.get('sent', "")
         }
