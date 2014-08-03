@@ -193,7 +193,7 @@ class FinancePage2(webapp2.RequestHandler):
 class MembershipPage(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('index.html')
-        self.response.write(template.render({'message': "membership"}))
+        self.response.write(template.render({'message': "Manage Benefits"}))
 
 #stores which banks the user uses
 class StoreBank(webapp2.RequestHandler):
