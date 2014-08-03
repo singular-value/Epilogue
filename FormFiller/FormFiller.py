@@ -19,7 +19,13 @@ class MainPage(webapp2.RequestHandler):
             "searchValue": "jeans"
             }
         url = "http://www.hugoboss.com/uk/en/searchresult.php"
-        self.response.write(fillForm(url, form_fields).content)
+        result = fillForm(url, form_fields).content
+        result = result.replace("<head>", """<head><base href="%s">""" % url)
+        self.response.write(result)
+
+#class OtherPage(webapp2.RequestHandler):
+#    def get(self):
+#        htmlcode = 
 
 application = webapp2.WSGIApplication([
     ('/', MainPage),
