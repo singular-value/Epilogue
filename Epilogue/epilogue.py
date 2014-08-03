@@ -48,6 +48,35 @@ class CertificatePage(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('certificate.html')
         self.response.write(template.render({'message': "certificate"}))
 
+class CertificateEnter(webapp2.RequestHandler):
+    def get(self):
+        me.name = "Jessie Kris Lambert"
+        me.address = "851 Church Street"
+        me.city = "Mountain View"
+        me.state = "California"
+        me.country = ""
+        me.zip = "94041"
+        me.sex = "Male"
+        me.ssn = "123-456-7890"
+        me.age_at_death = "62"
+        me.date_of_birth = "08/02/2014"
+        me.date_of_death = ""
+        me.birthplace = "Wichita, KS"
+        me.resident_state = "California"
+        me.resident_county = "Santa Clara County"
+        me.resident_town = "Mountain View"
+        me.resident_address = "851 Church Street"
+        me.resident_apptnum = "1227"
+        me.resident_zip = "94041"
+        me.us_armed_forces = "Yes"
+        me.fathers_name = "Jackson Bill Lambert"
+        me.mothers_name = "Katarina Lee"
+        me.surviving_spouse_name = "Jennifer Menendez"
+        me.marital_status = "Married"
+        me.your_name = "Stephen Lambert"
+        me.your_relationship = "Son"
+        me.your_address = "1532 Willows Way, Los Altos, CA 94024"
+        self.redirect('/certificate-form')
 
 class LoginPage(webapp2.RequestHandler):
     def get(self):
@@ -217,5 +246,6 @@ application = webapp2.WSGIApplication([
     ('/bank2', FinancePage2),
     ('/certificate-upload', UploadCertificate),
     ('/certificate-form', CertificateForm),
-    ('/certificate-store', CertificateStore)
+    ('/certificate-store', CertificateStore),
+    ('/certificate-enter', CertificateEnter),
 ], debug=True)
