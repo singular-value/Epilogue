@@ -1,0 +1,511 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="https://www.ims-dm.com/cgi/ddnc.php">
+<title>Deceased Do Not Contact Registration</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<script type="text/javascript" src="/jscripts/common.js"></script>
+<script type="text/javascript" src="/jscripts/jquery.js"></script>
+<script type="text/javascript" src="/jscripts/jquery.form.js"></script>
+<script type="text/javascript" src="/jscripts/jquery.metadata.js"></script>
+<script type="text/javascript" src="/jscripts/jquery.validate.js"></script>
+<link rel="stylesheet" type="text/css" href="/includes/layout.css" />
+<script language="javaScript">
+
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." :
+	"http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost +
+	"google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+
+</script>
+<meta name="keywords" content="direct marketing association, dma, direct mail association, dmachoice, dmachoice.org, junk mail, mail preference service, email preference service, name removal, remove, stop sending me, do not mail list, manage mail, how to get off mailing lists, direct mail, mail preferences, off mailing lists, consumer, e-mail, do not email list, opt out, opt-out, opt in, opt-in, sweepstakes, catalogs, magazine offers, credit offers, mail offers, prospect, mailbox profile, do not call, consumer basics, consumer guides, non profit, nonprofit, non-profit, donor, donation requests, current resident, reducing waste, help the environment, protect against identity theft, ID theft, save trees, less paper" />
+
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<meta http-equiv="Cache-Control" content="no-store"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+
+<script type="text/javascript" src="/jscripts/jquery.maskedinput.js"></script>
+ <script type="text/javascript" src="/jscripts/dmps_regist_module.js"></script> <script type="text/javascript">
+	$(function(){
+		$("#getImg").css('background-image','url(/graphics/forms/btn_get_hover.gif)');
+	});
+</script>
+<SCRIPT LANGUAGE="JavaScript" type="text/javascript">
+<!--
+function new_freecap()
+{
+	// loads new freeCap image
+	if(document.getElementById)
+	{
+		// extract image name from image source (i.e. cut off ?randomness)
+		thesrc = document.getElementById("freecap").src;
+		thesrc = thesrc.substring(0,thesrc.lastIndexOf(".")+4);
+		// add ?(random) to prevent browser/isp caching
+		document.getElementById("freecap").src = thesrc+"?"+Math.round(Math.random()*100000);
+	} else {
+		alert("Sorry, cannot autoreload image\nSubmit the form and a new freeCap will be loaded");
+	}
+}
+
+function showAltName(divId) {
+	document.getElementById(divId).style.display = 'block';
+}
+
+function showAltAddr(divId) {
+	document.getElementById(divId).style.display = 'block';
+}
+//-->
+</script>
+<link rel="stylesheet" type="text/css" href="/includes/member_regist.css" />
+</head>
+
+<body>
+	<div id="htmlContainer">
+				<div id="topContainer">
+			<div id="siteLogo" onclick='javaScript:location.href="http://www.dmachoice.org/dma/member/home.action"'></div>
+			<div id="siteNav">
+				<div id="quickNav">
+				</div>
+				<div id="topNav">
+					<ul>
+						<li><div id="radian"></div></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="middleContainer">
+<div id="main">
+	<div id="leftContent">
+
+		  <!--------------------body begin-------------------------------->
+		<script type="text/javascript">
+		<!--
+		function show_verify_message()
+		{
+			document.getElementById('verify_message').style.display='inline';
+		}
+		-->
+		</script>
+		<script type="text/javascript">
+		<!--
+		function hide_verify_message()
+		{
+	        document.getElementById('verify_message').style.display='none';
+		}
+		-->
+		</script>
+		<script type="text/javascript">
+		<!--
+		function new_captcha()
+		{
+		var c_currentTime = new Date();
+		var c_miliseconds = c_currentTime.getTime();
+
+		document.getElementById('captcha').src = '/captcha/image.php?x='+ c_miliseconds;
+		}
+		-->
+		</script>
+
+		<body onload="new_captcha(); hide_verify_message();">
+		<h1>Deceased Do Not Contact Registration</h1>
+		<p><span class="BodyCopy">
+		DMA sometimes receives calls from family members, friends or caretakers seeking to remove the names of deceased individuals from commercial marketing lists. We understand how difficult this process can be.<br /><br />
+
+		To assist those who are managing this process, DMA created (in October 2005) a <b>Deceased Do Not Contact List</b> (DDNC) which all DMA members are required to honor. The Deceased Do Not Contact List is available to companies and nonprofit organizations for the sole purpose of removing names and addresses from their marketing lists.<br /><br />
+
+		<b>What are the expected results?</b><br />
+		When you register a name with DDNC, the person's name, address, phone number and e-mail address is placed on a special do not contact file. All DMA members are required to eliminate these individuals from their prospecting campaigns. The service is also available to non-members of DMA so that all marketers may take advantage of this service to eliminate names.<br /><br />
+		A new, updated file is distributed to our members at least once every three months. Therefore the number of commercial contacts from DMA members should begin to decrease within three months.<br /><br />
+
+		<b>How to Register</b><br />
+		Friends, relatives and caregivers are encouraged to register the information about deceased individuals as soon as possible. We encourage funeral directors, hospitals, doctors' offices and others to provide this Internet link to the bereaved, as well.<br /><br />
+
+		<b>Verification Fee</b><br />
+		There is no charge to register for the Deceased Do Not Contact List. Consumers will be asked for an email address when registering. An email will be sent to this address which will have a link to verify registration.<br /><br />
+		The DMA will not keep personal, identifiable information and will not use the information for marketing purposes.<br /><br />
+		</span></p>
+
+		<span id='verify_message'><div style="border: 1px solid red; margin-left: 15px; margin-bottom: 3px; padding: 3px;"><font color="red"><b>The following information is missing or invalid:<br /><br />Verification code entered incorrectly</b></font></div></span>
+
+		<div id="summary" class="summary">
+
+		<font color="red"><b>The following information is missing or invalid:</b></font>
+		<ul>
+
+
+		</ul>
+		</div>
+		<div class="leading16 Header">Information About the Deceased</div>
+		<div class="leading16 Header">Primary name</div>
+
+<form id="memberForm" name="add" onsubmit="return true;" action="/cgi/dmps2.php" method="post">
+		<div class="regSheet">
+
+		<input type="hidden" name="newMember" value="true" id="memberForm_newMember"/>
+
+		<input type="hidden" name="passwordChanged" value="true" id="memberForm_passwordChanged"/>
+
+		<div id="nameVersion">
+					<!-- First Name Start -->
+		<table width="100%">
+		<thead>
+			<tr>
+				<td colspan="4"><em>*</em>Required</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>&nbsp;&nbsp;&nbsp;Prefix:</td>
+							<td colspan="3">
+					<select name="member.prefix" id="member.prefix">
+    <option value=""></option>
+    <option value="Mr." >Mr.</option>
+    <option value="Mrs." >Mrs.</option>
+    <option value="Ms." >Ms.</option>
+    <option value="Miss." >Miss.</option>
+    <option value="Dr." >Dr.</option>
+
+
+</select>
+
+				</td>
+			</tr>
+			<tr>
+				<td width="18%"><em>*</em><label for="member.firstName">First name:</label></td>
+				<td width="36%"><input type="text" name="member.firstName" value="" id="member.firstName" class="inputTxt"/>
+</td>
+				<td width="18%">Middle initial:</td>
+				<td width="28%"><input type="text" name="member.middleName" maxlength="1" value="" id="member.middleName" class="inputTxt input60"/>
+</td>
+			</tr>
+			<tr>
+				<td><em>*</em><label for="member.lastName">Last name:</label></td>
+				<td><input type="text" name="member.lastName" value="" id="member.lastName" class="inputTxt"/>
+</td>
+			
+				<td>Suffix:</td>
+				<td>
+					<select name="member.suffix" id="member.suffix">
+    <option value=""></option>
+    <option value="Jr." >Jr.</option>
+    <option value="Sr." >Sr.</option>
+    <option value="I." >I.</option>
+    <option value="II." >II.</option>
+    <option value="III." >III.</option>
+    <option value="IV." >IV.</option>
+
+
+</select>
+
+				</td>
+			</tr>
+			<tr>
+				<td class="noRow"></td>
+				<td colspan="2" class="noRow"></td>
+				<td class="noRow"><div id="closeAddName" style="float:right;display:none;"><a tabindex="-1" href="javascript:void(0)" class="Link"><span>close</span>&nbsp;<img src="/graphics/forms/ico_arrow_down.gif" style="border:0;" width="10" height="5"></a></div></td>
+			</tr>
+		</tbody>
+		</table>
+		<!-- First Name End -->
+		<!-- Second Name Start -->
+
+		<!-- Second Name End -->
+		<!-- Third Name Start -->
+
+		<!-- Third Name End -->
+		<!-- Fourth Name Start -->
+
+		<!-- Fourth Name End -->
+		<!-- Fifth Name Start -->
+
+		<!-- Fifth Name End -->
+		</div>
+			<div style="width:420px;height:20px;padding-left:90px;">
+			<div class="add"><a tabindex="-1" class="Link" id="addNameVer" href="javascript:void(0);"><b>+Add another version of your name</b></a>&nbsp;&nbsp;&nbsp;&nbsp;<a tabindex="-1" href="javascript:void(0);" class="Link what">What's this</a></div><div class="addArea"><a tabindex="-1" id="nameTips" href="javascript:void(0);" class="help">If you receive mail sent to multiple versions of your name (such as nicknames, aliases or misspellings), you can add up to four additional names to your account. However, if you'd like to manage mail for multiple individuals in your household, we recommend creating a separate account for each person.</a></div>
+			</div>
+		</div>
+		<div class="leading16 Header">Address</div>
+		<div class="regSheet">
+		<div id="addressInfo">
+					<table width="100%">
+		<input type="hidden" name="addressList.id[0]" value="" id="memberForm_addressList_0__id"/>
+
+		<tbody>
+			<tr>
+				<td width="20%"><em>*</em><label for="addressList.address1[0]">Address:</label></td>
+				<td colspan="2"><input type="text" name="addressList.address1[0]" value="" id="addressList.address1[0]" class="inputTxt input356"/>
+</td>
+			</tr>
+			<tr>
+				<td>&nbsp;&nbsp;&nbsp;Address 2:</td>
+				<td colspan="2"><input type="text" name="addressList.address2[0]" value="" id="addressList.address2[0]" class="inputTxt input356"/>
+</td>
+			</tr>
+			<tr>
+				<td><em>*</em><label for="addressList.city[0]">City:</label></td>
+				<td colspan="2"><input type="text" name="addressList.city[0]" value="" id="addressList.city[0]" class="inputTxt"/>
+</td>
+			</tr>
+			<tr>
+				<td><em>*</em><label for="addressList.state[0]">State:</label></td>
+				<td>
+					<select name="addressList.state[0]" id="addressList.state[0]" style="width:230px;">
+					<option value="">State</option>
+<option value='AL'>Alabama</option><option value='AK'>Alaska</option><option value='AB'>Alberta</option><option value='AS'>American Samoa</option><option value='AZ'>Arizona</option><option value='AR'>Arkansas</option><option value='AA'>Armed Forces Americas</option><option value='AE'>Armed Forces Europe, Middle East</option><option value='AP'>Armed Forces Pacific</option><option value='BC'>British Columbia</option><option value='CA'>California</option><option value='CZ'>Canal Zone</option><option value='CO'>Colorado</option><option value='CT'>Connecticut</option><option value='DE'>Delaware</option><option value='DC'>District of Columbia</option><option value='FM'>Federated States Of Micronesia</option><option value='FL'>Florida</option><option value='GA'>Georgia</option><option value='GU'>Guam</option><option value='HI'>Hawaii</option><option value='ID'>Idaho</option><option value='IL'>Illinois</option><option value='IN'>Indiana</option><option value='IA'>Iowa</option><option value='KS'>Kansas</option><option value='KY'>Kentucky</option><option value='LA'>Louisiana</option><option value='ME'>Maine</option><option value='MB'>Manitoba</option><option value='MD'>Maryland</option><option value='MA'>Massachusetts</option><option value='MI'>Michigan</option><option value='MN'>Minnesota</option><option value='MS'>Mississippi</option><option value='MO'>Missouri</option><option value='MT'>Montana</option><option value='NE'>Nebraska</option><option value='NV'>Nevada</option><option value='NB'>New Brunswick</option><option value='NH'>New Hampshire</option><option value='NJ'>New Jersey</option><option value='NM'>New Mexico</option><option value='NY'>New York</option><option value='NF'>Newfoundland</option><option value='NC'>North Carolina</option><option value='ND'>North Dakota</option><option value='MP'>Northern Mariana Islands</option><option value='NT'>Northwest Territories</option><option value='NS'>Nova Scotia</option><option value='OH'>Ohio</option><option value='OK'>Oklahoma</option><option value='ON'>Ontario</option><option value='OR'>Oregon</option><option value='PI'>Pacific Islands</option><option value='PW'>Palau</option><option value='PA'>Pennsylvania</option><option value='PI'>Prince Edward Island</option><option value='PR'>Puerto Rico</option><option value='PQ'>Quebec</option><option value='RI'>Rhode Island</option><option value='SK'>Saskatchewan</option><option value='SC'>South Carolina</option><option value='SD'>South Dakota</option><option value='TN'>Tennessee</option><option value='TX'>Texas</option><option value='TT'>Trust Territories</option><option value='UT'>Utah</option><option value='VT'>Vermont</option><option value='VI'>Virgin Islands</option><option value='VA'>Virginia</option><option value='WA'>Washington</option><option value='WV'>West Virginia</option><option value='WI'>Wisconsin</option><option value='WY'>Wyoming</option>
+
+</select>
+
+				</td>
+			</tr>
+			<tr>
+				<td><em>*</em><label for="addressList.zipCode[0]">ZIP code:</label></td>
+				<td width="37%"><input type="text" name="addressList.zipCode[0]" value="" id="addressList.zipCode[0]" class="inputTxt"/>
+</td>
+				<td width="48%">Country:&nbsp;&nbsp;&nbsp;United States<input type="hidden" name="addressList.country[0]" value="United States" id="addressList.country[0]"/>
+</td>
+			</tr>
+			<tr>
+				<td class="noRow"></td>
+				<td class="noRow"></td>
+				<td class="noRow"><div id="closeAddAddress" style="float:right;display:none;"><a tabindex="-1" href="javascript:void(0)" class="Link"><span>close</span>&nbsp;<img src="/graphics/forms/ico_arrow_down.gif" style="border:0;" width="10" height="5"></a></div></td>
+			</tr>
+		</tbody>
+		</table>
+		<!-- Other Address Start -->
+
+		<!-- Other Address End -->
+		</div>
+			<div style="width:420px;height:20px;padding-left:90px;">
+				<div class="add"><a tabindex="-1"  class="Link" id="addAddressInfo" href="javascript:void(0);">+Add another address</a>&nbsp;&nbsp;&nbsp;&nbsp;<a tabindex="-1" href="javascript:void(0);" class="Link what">What's this</a></div><div class="addArea"><a tabindex="-1" id="addressTips" href="javascript:void(0);" class="help">If you receive mail sent to multiple addresses (such as a business address or vacation home), you can add up to four additional addresses to your account.</a></div>
+			</div>
+
+		</div>
+		<div class="leading16 Header">Additional Information About Deceased</div>
+		<div class="regSheet">
+		<div>
+		<table>
+		<tbody>
+			<tr><td>Telephone #1: </td>
+			<td><input type="text" name="phone1" size="15" value=''></td></tr>
+			<tr><td>Telephone #2: </td>
+			<td><input type="text" name="phone2" size="15" value=''></td></tr>
+			<tr><td>E-mail Address of Individual: </td>
+			<td><input type="text" name="emaildec" size="50" value=''></td></tr>
+			<tr><td>Additional E-mail Address: </td>
+			<td><input type="text" name="emaildec2" size="50" value=''></td></tr>
+			<tr><td>Additional E-mail Address: </td>
+			<td><input type="text" name="emaildec3" size="50" value=''></td></tr>
+			<tr>
+			<td><em>*</em><label for="year">Month/Year of Death:  (MM / YYYY)</td>
+			<td>
+
+			
+			<select name="month">
+			<option value="01" >01</option>
+			<option value="02" >02</option>
+			<option value="03" >03</option>
+			<option value="04" >04</option>
+			<option value="05" >05</option>
+			<option value="06" >06</option>
+			<option value="07" >07</option>
+			<option value="08" >08</option>
+			<option value="09" >09</option>
+			<option value="10" >10</option>
+			<option value="11" >11</option>
+			<option value="12" >12</option>
+			</select>
+
+			&nbsp;/&nbsp;
+
+			<input type="text" name="year" size="4" value=""  id="year" class="inputTxt input60">
+			</td>
+			</tr>
+
+			<tr><td><em>*</em><label for="age">Age at Time of Death: </td>
+			<td><input type="text" name="age" size="3" value=""  id="age" class="inputTxt"></td></tr>
+
+		</tbody>
+		</table>
+		</div>
+		</div>
+
+		<div class="leading16 Header">Information About You</div>
+		<div class="regSheet">
+		<div>
+		<table>
+		<tbody>
+			<tr>
+				<td width="18%"><em>*</em><label for="member.fnamesub">First name:</label></td>
+				<td width="46%"><input type="text" name="member.fnamesub" value="" id="member.fnamesub" class="inputTxt"/></td>
+				<td width="18%">Middle initial:</td>
+				<td width="18%"><input type="text" name="member.mnamesub" maxlength="1" value="" id="member.mnamesub" class="inputTxt input60"/></td>
+			</tr>
+			<tr>
+				<td><em>*</em><label for="member.lnamesub">Last name:</label></td>
+				<td><input type="text" name="member.lnamesub" value="" id="member.lnamesub" class="inputTxt"/></td>
+			</tr>
+			<tr><td colspan="4"><em>*</em><label for="relate">Your Relation to Deceased: &nbsp;&nbsp;<input type="text" name="relate" size="40" value="" id="relate" class="inputTxt"></td></tr>
+			<tr>
+				<td width="25%" valign='top'><em>*</em><label for="member.email">Email:</label></td>
+				<td valign='top'><input type="text" name="member.email" value="" id="member.email" class="inputTxt"/></td><td valign='top' colspan='2'><span style='line-height:12pt;color: #444444;'> A confirming email will be sent to this address.</span></td>
+			</tr>
+			<tr>
+				<td><em>*</em><label for="confirmEmail">Re-enter email:</label></td>
+				<td colspan="2"><input id="confirmEmail" name="confirmEmail" type="text" value="" class="inputTxt"/></td>
+			</tr>
+			</tbody>
+			</table>
+		</div>
+
+		<div>
+		<table width="100%">
+		<tbody>
+			<tr>
+				<td width="30%"><div class="tips"><label for="requestVerifyCode"><font color="red">*</font>&nbsp;Enter characters shown on right (case sensitive):</label></div></td>
+				<td><input type="text" name="verify_code" value="" class="inputTxt"/>
+</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td valign="top"><div style="float:left;width:70px;height:30px;overflow:hidden;padding-left:12px;"><a tabindex="-1" href="javascript:void(0);" class="Link what">What's this</a></div><div class="addArea"><a tabindex="-1" id="nameTips" href="javascript:void(0);" class="help">This identity check helps improve security and prevent automated programs from accessing this site. Please enter the characters you see exactly as they are shown.</a></div></td>
+				<td colspan="2"><span id="verifyCodeDisplay"><div onMouseDown="if(event.preventDefault){event.preventDefault();}" onContextMenu="return false" onSelectStart="return false"><img border="0" id="captcha" src="/captcha/image.php" alt=""></div></span></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="2">Can't read it? <a href="JavaScript: new_captcha();">Try another one.</a></td>
+			</tr>
+		</tbody>
+		</table>
+		</div>
+		<div id="btnArea"><input onclick="window.open('','_self');window.close();" type="image" src="/graphics/forms/btn_cancel.gif" border="0" title="Cancel" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="/graphics/forms/submit.gif" border="0" title="Submit" /></div>
+		</form>
+
+
+
+
+		</div>
+	</div>
+</div>
+<!--------------------body end-------------------------------->
+
+<!--------------------Template Area-------------------------------->
+<div class="unshow">
+	<div class="tipsTemplate">
+		<div class="closeWin"><a href="javascript:void(0);">close</a></div>
+		<p>{$text}</p>
+	</div>
+
+	<div class="addNameVerTemplate">
+		<table>
+		<tbody>
+			<tr>
+				<td class="SubHeader" colspan="4"></td>
+			</tr>
+			<tr>
+				<td>&nbsp;&nbsp;&nbsp;Prefix:</td>
+				<td colspan="3">
+					<select name="member.prefix{0}" id="member.prefix{0}">
+    <option value=""></option>
+    <option value="Mr.">Mr.</option>
+    <option value="Mrs.">Mrs.</option>
+    <option value="Ms.">Ms.</option>
+    <option value="Miss.">Miss.</option>
+    <option value="Dr.">Dr.</option>
+
+
+</select>
+
+				</td>
+			</tr>
+			<tr>
+				<td width="18%"><em>*</em><label for="member.firstName{0}">First name:</label></td>
+				<td width="46%"><input type="text" name="member.firstName{0}" value="" id="member.firstName{0}" class="inputTxt"/>
+</td>
+				<td width="18%">Middle initial:</td>
+				<td width="18%"><input type="text" name="member.middleName{0}" maxlength="1" value="" id="member.middleName{0}" class="inputTxt input60"/>
+</td>
+			</tr>
+			<tr>
+				<td><em>*</em><label for="member.lastName{0}">Last name:</label></td>
+				<td><input type="text" name="member.lastName{0}" value="" id="member.lastName{0}" class="inputTxt"/>
+</td>
+				<td>Suffix:</td>
+							<td>
+					<select name="member.suffix{0}" id="member.suffix{0}">
+    <option value=""></option>
+    <option value="Jr." >Jr.</option>
+    <option value="Sr." >Sr.</option>
+    <option value="I." >I.</option>
+    <option value="II." >II.</option>
+    <option value="III." >III.</option>
+    <option value="IV." >IV.</option>
+
+
+</select>
+
+				</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+
+	<div class="addressInfoTemplate">
+		<table width="100%">
+		<tbody>
+			<tr>
+				<td class="SubHeader" colspan="4"></td>
+			</tr>
+			<tr>
+				<td width="20%"><em>*</em><label for="addressList.address1[{0}]">Address:</label></td>
+				<td colspan="2"><input type="text" name="addressList.address1[{0}]" value="" id="addressList.address1[{0}]" class="inputTxt input356"/>
+</td>
+			</tr>
+			<tr>
+				<td>&nbsp;&nbsp;&nbsp;Address 2:</td>
+				<td colspan="2"><input type="text" name="addressList.address2[{0}]" value="" id="addressList.address2[{0}]" class="inputTxt input356"/>
+</td>
+			</tr>
+			<tr>
+				<td><em>*</em><label for="addressList.city[{0}]">City:</label></td>
+				<td colspan="2"><input type="text" name="addressList.city[{0}]" value="" id="addressList.city[{0}]" class="inputTxt"/>
+</td>
+			</tr>
+			<tr>
+				<td><em>*</em><label for="addressList.state[{0}]">State:</label></td>
+				<td>
+					<select name="addressList.state[{0}]" id="addressList.state[{0}]" style="width:230px;">
+    <option value="">State</option>
+<option value='AL'>Alabama</option><option value='AK'>Alaska</option><option value='AB'>Alberta</option><option value='AS'>American Samoa</option><option value='AZ'>Arizona</option><option value='AR'>Arkansas</option><option value='AA'>Armed Forces Americas</option><option value='AE'>Armed Forces Europe, Middle East</option><option value='AP'>Armed Forces Pacific</option><option value='BC'>British Columbia</option><option value='CA'>California</option><option value='CZ'>Canal Zone</option><option value='CO'>Colorado</option><option value='CT'>Connecticut</option><option value='DE'>Delaware</option><option value='DC'>District of Columbia</option><option value='FM'>Federated States Of Micronesia</option><option value='FL'>Florida</option><option value='GA'>Georgia</option><option value='GU'>Guam</option><option value='HI'>Hawaii</option><option value='ID'>Idaho</option><option value='IL'>Illinois</option><option value='IN'>Indiana</option><option value='IA'>Iowa</option><option value='KS'>Kansas</option><option value='KY'>Kentucky</option><option value='LA'>Louisiana</option><option value='ME'>Maine</option><option value='MB'>Manitoba</option><option value='MD'>Maryland</option><option value='MA'>Massachusetts</option><option value='MI'>Michigan</option><option value='MN'>Minnesota</option><option value='MS'>Mississippi</option><option value='MO'>Missouri</option><option value='MT'>Montana</option><option value='NE'>Nebraska</option><option value='NV'>Nevada</option><option value='NB'>New Brunswick</option><option value='NH'>New Hampshire</option><option value='NJ'>New Jersey</option><option value='NM'>New Mexico</option><option value='NY'>New York</option><option value='NF'>Newfoundland</option><option value='NC'>North Carolina</option><option value='ND'>North Dakota</option><option value='MP'>Northern Mariana Islands</option><option value='NT'>Northwest Territories</option><option value='NS'>Nova Scotia</option><option value='OH'>Ohio</option><option value='OK'>Oklahoma</option><option value='ON'>Ontario</option><option value='OR'>Oregon</option><option value='PI'>Pacific Islands</option><option value='PW'>Palau</option><option value='PA'>Pennsylvania</option><option value='PI'>Prince Edward Island</option><option value='PR'>Puerto Rico</option><option value='PQ'>Quebec</option><option value='RI'>Rhode Island</option><option value='SK'>Saskatchewan</option><option value='SC'>South Carolina</option><option value='SD'>South Dakota</option><option value='TN'>Tennessee</option><option value='TX'>Texas</option><option value='TT'>Trust Territories</option><option value='UT'>Utah</option><option value='VT'>Vermont</option><option value='VI'>Virgin Islands</option><option value='VA'>Virginia</option><option value='WA'>Washington</option><option value='WV'>West Virginia</option><option value='WI'>Wisconsin</option><option value='WY'>Wyoming</option>
+
+</select>
+
+				</td>
+			</tr>
+			<tr>
+				<td><em>*</em><label for="addressList.zipCode[{0}]">ZIP code:</label></td>
+				<td width="37%"><input type="text" name="addressList.zipCode[{0}]" value="" id="addressList.zipCode[{0}]" class="inputTxt"/>
+</td>
+				<td width="48%">Country:&nbsp;&nbsp;&nbsp;United States<input type="hidden" name="addressList.country[{0}]" value="United States" id="addressList.country[{0}]"/>
+</td>
+			</tr>
+		</tbody>
+		</table>
+
+</div>
+</div>
+
+		</div>
+				<div id="bottomContainer">
+			<div id="bottomInner">
+				<div id="copyRight">Copyright 2014 Direct Marketing Association</div>
+				<ul id="bottomLink">
+					<li><a tabindex="-1" href="http://www.dmachoice.org/static/condition_of_use.php">Conditions of Use</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+					<li><a tabindex="-1" href="http://www.dmachoice.org/static/privacy_policy.php">Privacy Policy</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+					<li><a tabindex="-1" href="http://www.dmachoice.org/report/initReport.php">Contact Us</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
