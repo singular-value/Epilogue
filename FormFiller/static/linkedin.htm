@@ -1,0 +1,745 @@
+
+
+<!DOCTYPE html >
+
+<html lang="en">
+<head>
+<base href="https://www.docusign.net/MEMBER/PowerFormSigning.aspx?PowerFormId=91e28b6c-bc93-47ed-8d1e-1f81083529d6">
+    <script type="text/javascript">
+        (function (global) {
+            var times = {};
+            //------------------------------------
+            function LogTiming(action, startTime, endTime) {
+                try {
+                    var params = "&action=" + action;
+                    var pageName = "DocuSign.aspx";
+                    var url = "DocuSignXML.aspx?logtiming=1" + GetTI(false);
+
+                    if (startTime) {
+                        params += "&starttime=" + startTime + "&endtime=" + endTime;
+                    } else if (window.res_ServerTimeForLogging) {
+                        // If no times specified assume we're using sever to generate start and end times
+                        params += "&serverstarttime=" + global.EscapeAll(res_ServerTimeForLogging);
+                    }
+                
+                    xLogTiming = new global.XmlLoader(url);
+                    xLogTiming.sendPost("application/x-www-form-urlencoded", "requestPage=" + global.EscapeAll(pageName) + params);
+                } catch (err) {
+                    // Make sure logging doesn't break anything 
+                }
+            }
+            //------------------------------------
+            function now() {
+                return +(new Date());
+            }
+            //------------------------------------
+            function recordTime(timeLabel) {
+                try {
+                    times[timeLabel] = now();
+                } catch (err) { }
+            }
+            //------------------------------------
+            // logDiff looks up startTimeLabel (created by recordTime) which is an accessor to the times object.
+            // if no time is found in the times object matching startTimeLabel or startTimeLabel is undefined 
+            // LogTime will use the server start time res_ServerTimeForLogging and serverEndTime when posted.
+            // If endTimeLabel is undefined then we assume now() for endTime
+            // Usage:
+            //    a point in your JS code do:
+            //      timeInfo.recordTime("anystartlabel")
+            //    end point of the JS code you want to track
+            //      timeInfo.recordTime("anyendlabel")
+            //    then call logDiff to post to server
+            //      timeInfo.logDiff("AnyAction", "anystartlabel", "anyendlabel");
+            function logDiff(action, startTimeLabel, endTimeLabel) {
+                try {
+                    var endTime;
+                    if (startTimeLabel != null) {
+                        if (endTimeLabel == null) endTime = now();
+                        else endTime = times[endTimeLabel];
+                    }
+                    LogTiming(action, times[startTimeLabel], endTime);
+                } catch(err) {
+                    // Make sure logging doesn't break anything 
+                }
+            }
+            //------------------------------------
+            var timeInfo = {
+                recordTime: recordTime,
+                logDiff: logDiff                
+            }
+            //------------------------------------
+            global.timeInfo = timeInfo;
+        })(this);
+        timeInfo.recordTime("JsExecStarted");
+    </script>
+    
+<script type="text/javascript">
+function DSLogEvent(eventName) {
+    try {
+        var events = ['Click_ConfirmSigning','Click_ConsumerDisclosureCheckbox','Click_ReviewDocumentHasConsumerDisclosure','Click_ReviewDocumentNoConsumerDisclosure','Email_LinkFollowed','Email_LinkActivation','Email_LinkMemberConsole','Email_LinkMemberLogin','Email_LinkActivationRecipient','Email_LinkReportLog','Email_CaptiveRecipientRedirect','Signing_ViewCoreSigning','Signing_ViewSigningComplete','Signing_ViewWelcomeDialogHasConsumerDisclosure','Signing_ViewWelcomeDialogNoConsumerDisclosure'];
+        try {
+            if (events.indexOf(eventName) < 0) {
+                return;
+            }
+        } catch (err) {
+            /* Older IE browsers do not handle .indexOf on array's */
+            if (events.toString().indexOf(eventName) < 0) {
+                return;
+            }
+        }
+        if (XmlLoader != null) {
+            var url = "DocuSignXML.aspx?logevent=1&action=" + eventName;
+            if (window.GetTime) url += GetTime(false);
+            var xLogEvent = new XmlLoader(url);
+            xLogEvent.sendGet();
+            /* Also log this event to mixpanel, humanize event name */
+            mixpanel.track('Signing:' + eventName.replace(/([A-Z])/g, ' $1').replace(/_/, ''));
+        }
+    } catch (err) {
+    }
+}
+</script>
+
+    <meta name="robots" content="noindex, noarchive, nofollow, nosnippet" />
+    <meta name="googlebot" content="noindex, noarchive, nofollow, nosnippet, noimageindex" />
+    <meta name="slurp" content="noindex, noarchive, nofollow, nosnippet, noodp, noydir" />
+    <meta name="msnbot" content="noindex, noarchive, nofollow, nosnippet" />
+    <meta name="teoma" content="noindex, noarchive, nofollow, nosnippet" />
+    <title>
+	PowerForm Envelope
+</title><link href="https://www.docusign.com/favicon.ico" rel="shortcut icon" type="image/x-icon" /><meta content="JavaScript" name="vs_defaultClientScript" /><meta content="C#" name="CODE_LANGUAGE" /><meta name="viewport" content="initial-scale=1.0;" /><link id="ds_dsCss_styMartiniFonts" rel="stylesheet" href="//docucdn-a.akamaihd.net/signing/css/font-faces.css" type="text/css"></link>
+
+<style id="ds_dsCss_styHolder" type="text/css">
+ 
+body  { margin:0px; font-family: Helvetica, Arial, sans-serif !important; font-size:12px; color:#333333; background-color:none;background-image:url(Images/backgrounds/body_background.png);background-repeat:repeat;}
+input{font-family: Helvetica, Arial, sans-serif !important;font-size:12px;}select{font-family: Helvetica, Arial, sans-serif !important;font-size:12px;}textarea{font-family: Helvetica, Arial, sans-serif !important;font-size:13px;}button{font-family: Helvetica, Arial, sans-serif !important;font-size:13px;}a{ font-family: Helvetica, Arial, sans-serif !important; color:#0D61AF;  cursor:pointer;  text-decoration:none; font-size:13px;}a:hover {text-decoration:underline; }a.smaller { font-size: 11px; }.SubjectHeaderTxt {color: #999;}.BtnHighlight { width: 1px;  position: absolute;  background-color: #fff;  top: 0px; height:32px;}.Btnyellow_new{position: relative;cursor: pointer;text-decoration: none;white-space: nowrap;background-repeat: repeat-x;padding: 1px 15px;font-family: Helvetica, Arial, sans-serif !important;text-shadow: 0px 1px 1px rgba(255,255,255,0.5);background-image: url(Images/backgrounds/button_gradient.png);-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;border:solid 1px #e7b236;;font-size:12px;font-weight:bold;min-height:34px;background-color: #ffcc4a;color: #333333 !important;}.Btngray_reskin {border:solid 1px #cccccc;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;box-shadow:0px 1px 3px 0px rgba(0,0,0,.15), inset 1px 1px 1px 1px rgba(255,255,255,0.5);-webkit-box-shadow:0px 1px 3px 0px rgba(0,0,0,.15), inset 1px 1px 1px 1px rgba(255,255,255,0.5);-moz-box-shadow:0px 1px 3px 0px rgba(0,0,0,.15), inset 1px 1px 1px 1px rgba(255,255,255,0.5);background-image: url(Images/backgrounds/button_gradient.png);background-repeat: repeat-x;font-size:13px; margin: 2px;text-shadow: 0px 1px 1px rgba(255,255,255,0.5);border: solid 1px #C6C6C6;background-color: #e2e2e2;color: #666666;}.Btngray_reskin:hover, .SigningHeaderButton:hover{background-image: url(Images/backgrounds/button_gradient_34_hover.png);}.Btngray_reskin:active, .HeaderBtnyellow_new:active, .SigningHeaderButton:active{background-image: url(Images/backgrounds/button_gradient_34_press.png);}.SigningHeaderButton{text-shadow: 0px 1px 1px rgba(255,255,255,0.5);border: solid 1px #C6C6C6;background-color: #e2e2e2;color: #666666;}.Btngray_home {border:solid 1px #cccccc;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;box-shadow:0px 1px 3px 0px rgba(0,0,0,.15);-webkit-box-shadow:0px 1px 3px 0px rgba(0,0,0,.15);-moz-box-shadow:0px 1px 3px 0px rgba(0,0,0,.15);background-color:#DCDCDC;background-image: url(Images/backgrounds/button_gradient_40.png);background-repeat: repeat-x;font-size:16px; color:#333333;position: relative;height: 40px;cursor: pointer;}.Btngray_home:hover{background-image: url(Images/backgrounds/button_gradient_40_hover.png);}.Btngray_home:active{background-image: url(Images/backgrounds/button_gradient_40_press.png);}.Btnyellow_reskin{  background-image: url(Images/backgrounds/button_autonav_gradient_40.png);  background-color: #FFCC4A;  background-repeat: repeat-x;  border: 1px solid #e7b236;  border-radius: 2px;  -webkit-border-radius: 2px;  -moz-border-radius: 2px;  cursor: pointer;  position: relative;  text-decoration: none;  font-weight:bold;  width: 101px !important;  height: 42px !important;   text-shadow: 0px 1px 1px rgba(255,255,255,0.5);  color: #333333;}.Btnyellow_reskin_hover {background-image: url(Images/backgrounds/button_autonav_gradient_40_on.png); }.Btnyellow_login{  font-family: 'Maven Pro', Arial, sans-serif !important;  font-weight: bold;  font-size: 13px;  letter-spacing: .6px;  background-color: #ffc820;  background-repeat: repeat-x;  border: 1px solid transparent;  border-radius: 2px;  -webkit-border-radius: 2px;  -moz-border-radius: 2px;  cursor: pointer;  position: relative;  white-space:nowrap;  text-decoration: none;  margin: 0 !important;  height: 34px !important;  text-transform: uppercase;  color: #333;  padding: 0 18px;  line-height: 30px;  min-width: 0 !important;}.Btnyellow_login .BtnHighlight {display:none;}.Btnyellow_login_hover, .Btnyellow_login:hover {background-color: #f7ba00;}.Btnyellow_login:active {background-color: #eaa602;}.Btnyellow_home{  background-image: url(Images/backgrounds/button_autonav_gradient_40.png);  background-repeat: repeat-x;  border: 1px solid #e7b236;  border-radius: 2px;  box-shadow:0px 1px 3px 0px rgba(0,0,0,.15);  -webkit-box-shadow:0px 1px 3px 0px rgba(0,0,0,.15);  -moz-box-shadow:0px 1px 3px 0px rgba(0,0,0,.15);  -webkit-border-radius: 2px;  -moz-border-radius: 2px;  cursor: pointer;  position: relative;  font-size:16px;  text-decoration: none;  width: 91px !important;  height: 40px !important;  text-shadow: 0px 1px 1px rgba(255,255,255,0.5);  color: #333333;  cursor: pointer;}.Btnyellow_home:active {background-image: url(Images/backgrounds/button_autonav_gradient_40_on.png);}.BtnHighlight40{height: 40px !important;opacity: 0.2;}.Btnprimary {position: relative;cursor: pointer;text-decoration: none;white-space: nowrap;background-repeat: repeat-x;padding: 1px 15px;font-family: Helvetica, Arial, sans-serif !important;text-shadow: 0px 1px 1px rgba(255,255,255,0.5);background-image: url(Images/backgrounds/button_gradient.png);-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;border:solid 1px #C6C6C6;font-size:12px;font-weight:bold;min-height:34px;background-color: #e2e2e2;color: #0D61AF;}.Btnprimary:hover{background-image: url(Images/backgrounds/button_gradient_hover.png);}.Btnprimary:disabled { color: #bbbbbb;}.Btnsecondary {position: relative;cursor: pointer;text-decoration: none;white-space: nowrap;background-repeat: repeat-x;padding: 1px 15px;font-family: Helvetica, Arial, sans-serif !important;text-shadow: 0px 1px 1px rgba(255,255,255,0.5); background-image: url(Images/backgrounds/button_gradient.png);-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;border:solid 1px #C6C6C6;font-size:12px;font-weight:bold;min-height:34px;background-color: #e2e2e2;color: #666666;}.Btnsecondary:hover{background-image: url(Images/backgrounds/button_gradient_hover.png);}.Btnsecondary:disabled { color: #bbbbbb;}.Btntransparent {background-color: transparent;border:solid 1px transparent;cursor: pointer;font-weight: normal;position: relative;text-decoration: none;padding:1px;margin:0px 10px;font-size:12px;min-height:36px;border:solid 0px transparent;color: #0D61AF;}.DiaHCSignDialog, .DiaHCSignDialogSmall {position: absolute;top: 20px;right: 16px;padding: 5px 5px 0px 0px;}.Btntransparent:hover{ text-decoration:underline;}.Btntransparent:disabled{ color:#A0A0A0;}.Modal { position:absolute;z-index:12;top:0px;height:500px;-ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=60)';filter:Alpha(opacity=60);opacity:.6;background-color:#000000 !important;background-image:none;background-repeat:repeat;overflow:visible;}.DiaHTSignDialog {padding: 30px 35px 4px;}.DashboardArea{    background: #fff;border: solid 1px #ccc;padding:10px;clear : both;margin-top : 20px;}.DashboardLinkBoldText{ font-weight: bold; font-size: 12px ; color: #069; cursor: pointer;}.DashboardDisabledText{ font-weight: bold;color: #9A9A9A;}.DashboardLinkBoldText:hover{ text-decoration:underline;}.DashboardLinkText{ font-weight: normal; font-size: 12px ; color: #069; cursor: pointer;}.DashboardLinkText:hover{ text-decoration:underline;}.DashboardLink11BoldText{ font-weight: bold; font-size: 11px ; color: #069; cursor: pointer;}.DashboardLink11BoldText:hover{ text-decoration:underline;}.DashboardIdName{   font-weight: normal;font-size: 18px ;color: #000000;font-family: Helvetica, Arial, sans-serif !important;}.FieldLbl { padding:2px 5px 0px 13px !important; }.Field  { color:#333333; margin:5px;  padding:2px 9px; resize:none; background-color: #FAFAFA;  -moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;border:solid 1px #CCC;}.Field:focus { outline:none; border:solid 1px #333333;}.Field:disabled{ color:#bbbbbb; background-color:#efefef; border:solid 1px #cccccc;}select.Field { padding:1px 2px 1px 2px !important; -moz-border-radius:3px !important; -webkit-border-radius:3px !important;  border-radius:3px !important;}.FieldMissing { color:#999999; }.FieldNotMissing { color:#333333; }.FieldRequired  {color:#333333; margin:5px;  padding:2px 9px; resize:none; background-color: #FAFAFA;  -moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;border:solid 1px #CCC;}.FieldNoEdit{ margin:5px;  padding:2px 9px;resize:none;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;border:solid 1px #CCC;border:solid 1px #CCC;background-color:#ffffff;}.FieldNoEdit:disabled{ color:#bbbbbb; background-color:#efefef; border:solid 1px #cccccc;}.FieldNoEdit:hover{ color:#333333; margin:5px;  padding:2px 9px; resize:none; background-color: #FAFAFA;  -moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;border:solid 1px #CCC; } .LogoutLinks  {  position: absolute;   top:0px;right:25px;  z-index: 1000;  }.TabsHolder  { position: relative;  z-index: 100; min-height:51px;background-color: #1E4CA1;background-image:url(Images/backgrounds/header_noisegradient.png);background-repeat:repeat-x;} .TabsPointer {position:absolute;z-index:101;top:42px;}.Border{position: relative;min-width: 1024px;border-bottom: solid 1px #cccccc;}.Header{position: relative;background-color: transparent;background-image:url(Images/backgrounds/subheader_background.png);background-repeat:repeat-x;background-position:bottom;min-height: 69px;}.HeaderContent{position: relative;margin: 0px 10px 0px 10px;float: left;}.HeaderLink { color: #0D61AF; font-size:12px; }.Logo {position: relative;float:left;vertical-align:middle;}.LogoFrameL{margin: 0px 0px 0px 40px;}.LogoFrameR{margin: 0px 40px 0px 0px;}.LogoLeft{ margin: 0px;cursor: pointer;background-color:#ffffff;background-image:url(Images/backgrounds/header_logo_gradient.png);background-repeat:repeat-x;padding:5px 0px;height:37px;}.LogoRight{position: relative;margin: 5px 10px 2px 10px;float: right;}.FormBody{min-height: 300px;position: relative;margin: 0px;clear: both;}.Footer{min-width: 944px;text-align: right;padding: 0 40px;}.FooterLogin{position: absolute;padding: 0px;display: block;}.FooterImage{position: relative;float: left;margin-right: 20px;}.DiaHSignDialogSmall {overflow: visible;}#divLanguageSelected {*display:inline;}.FooterLinks{ color:#999;display: inline-block;*display: inline;overflow: visible;position: relative;}.FooterLink {padding-top: 4px;display: inline-block; color:#999; font-size:12px; cursor:pointer;}.FooterLink:hover{ text-decoration:underline;}.FooterMenuClosed{color: #999;display: none;z-index: 1000;cursor: pointer;min-width: 100px;}.FooterMenuClosed:hover{display: block;left: 0px;top: 0px;z-index: 1000;cursor: pointer;min-width: 100px; border:solid 1px #DEDEDE;   -moz-border-radius:10px; -webkit-border-radius:10px;  border-radius:10px;}.SctClr { position:relative; clear:both; height:1px; font-size:1px;}.DefaultLinkBlue { color: #0D61AF; }.DefaultLinkDark { color: #000000; }.DefaultLinkLight { color: #FFFFFF; }.DefaultLink12 { font-size: 12px; }.DefaultLink, .DefaultLink:visited{text-decoration: none;cursor: pointer;}.DefaultLink:hover{text-decoration: underline;cursor: pointer;}.ToolSp{ position:relative; height:2px; font-size:2px; background-image:url(/Member/Images/backgrounds/options_spacer.png); background-repeat:repeat-x; margin-top:3px; margin-bottom:3px;}.ToolSpSmall{ position:relative; height:2px; font-size:2px; background-image:url(/Member/Images/backgrounds/options_spacer.png); background-repeat:repeat-x; margin-top:1px;}.SearchTxtImg{ position:absolute; right:0px;  cursor: pointer;  vertical-align: middle;background-repeat:no-repeat;top:0px;height:32px;width:32px; background-color:#e2e2e2;background-image: url(Images/controls/search_new_dark.png);-moz-border-radius:0px 2px 2px 0px;-webkit-border-radius:0px 2px 2px 0px;border-radius:0px 2px 2px 0px;border:solid 1px #C6C6C6;}.SearchTxtImg:hover{ background-image: url(Images/controls/search_new_dark_hover.png);}.SearchField { padding: 2px 30px 2px 7px !important;height:28px;width:200px;margin-top:0px;border:solid 1px #C6C6C6 !important;}.DIA  { position:absolute; z-index:500; min-width: 385px;}.DIASCREEN { position:fixed !important;   z-index:500; }.DIAFLOW  { position:relative; margin:0px 10px; width:1015px; }.DIAFLOWLEFTONLY{ position:relative; margin:0px 10px; width:242px;}.Correcting{ position:relative; margin:0px 10px; width:1015px; font-size: 20px;padding: 6px;}.ErrorMessageText{ font-weight: bold; font-size: 11px; color: #DC143C;}.ContentTextBoldBlue{ font-weight: bold; font-size: 12px; color: #0073cf;}.ContentTextBlue{ font-weight: normal; font-size: 12px; color: #0073cf;}.Page{  margin:30px 0px 0px 55px;  margin-right:110px !important;  margin-left:110px !important;position:relative;background-color:#FFFFFF;clear:both;border:solid 1px #CCCCCC;}.PageIdentifier  {  margin:0px 0px 0px 55px;position:relative;background-color:transparent;padding-top:6px;    margin-left:110px !important; }.CurrentFilter{font-size: 12px;}.BorderRoundGray { padding: 5px;-moz-border-radius:5px;-webkit-border-radius:5px; border-radius:5px;border:solid 1px #CFCFCF;}.histEntityTitle {color: #999999;font-size: 14px;}.histEntityContent {  color: #333333;font-size: 14px;}.historyDataRow {margin-bottom: 4px;font-size: 14px;color: #333333;border-bottom: solid 1px #e8e8e8;float:left;width:100%;}.timeColumn {display: inline-block;vertical-align: top;width: 14%;margin-right:10px;float:left;}.userColumn {display: inline-block;vertical-align: top;width: 20%;margin-right:10px;float:left;}.actionColumn {display: inline-block;vertical-align: top;width: 12%;margin-right:10px;float:left;}.activityColumn {display: inline-block;vertical-align: top;width: 37%;margin-right:10px;float:left;}.statusColumn {display: inline-block;vertical-align: top;width: 8%;}
+.TabCommon{cursor:pointer;float:left;position:relative;font-size:14px;text-align:center;margin-left:0px;padding-left:5px;padding-right:5px;border-left:solid 1px #143169;border-right:1px solid transparent;bottom:0px;color:#FFFFFF;}.TabSmall{ font-weight:bold;border:1px solid #C6C6C6 !important;font-size:12px;min-width:70px !important;min-height:24px !important;padding-top:9px;background-image:url(Images/backgrounds/button_gradient.png);background-repeat:repeat-x;background-color: #e2e2e2;color:#666666;}.TabSelSmall{ font-weight:bold;border:none !important;font-size:12px;min-width:72px !important;min-height:25px !important;padding-top:10px;background-color: #1E4CA1;color:#FFFFFF;}.TabBig{ font-size:13px;font-weight:bold;height:29px !important;min-width:100px !important;padding-top:16px;}.TabSelBig{ font-size:13px;font-weight:bold;border-right:1px solid transparent;border-bottom:solid 1px #143169;background-color: #143169;height:29px !important;min-width:100px !important;padding-top:16px;}.TabOuter{ border-right:solid 1px #143169;float:left;position:relative;}.TabOuterSmall{float:left;position:relative;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;}.TabSpace { float: left;height: 10px;position: relative;width: 280px;}.HeaderTextStyle{ font-size:13px;font-weight:bold; font-size:13px;font-weight:bold;color:#FFFFFF;}.HeaderBackground{ background-color: #1E4CA1;}
+.ActionsMenu{display: block;z-index: 1000;cursor: pointer;min-width: 100px; background-color: #FAFAFA; border:solid 1px #A4A4A4;  -moz-box-shadow:0px 0px 6px 0px rgba(0, 0, 0, 0.3); -webkit-box-shadow:0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow:0px 0px 6px 0px rgba(0, 0, 0, 0.3); -moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px; color:#333333;}.ActionsMenuManage{display: block;z-index: 1000;cursor: pointer; position: absolute;  min-width: 150px; -moz-border-radius:0px 0px 2px 2px;-webkit-border-radius:0px 0px 2px 2px;border-radius:0px 0px 2px 2px; -moz-box-shadow:0px 0px 6px 0px rgba(0, 0, 0, 0.3); -webkit-box-shadow:0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow:0px 0px 6px 0px rgba(0, 0, 0, 0.3); background-color: #fff;border:solid 1px #ccc;-moz-box-shadow:0px 0px 6px 0px rgba(0, 0, 0, 0.3); -webkit-box-shadow:0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow:0px 0px 6px 0px rgba(0, 0, 0, 0.3);}.ActionsMenuClosed{display: block;left: 0px;top: 0px;z-index: 1000;cursor: pointer;min-width: 100px;border: solid 1px transparent;}.ActionsMenuClosedNoHover{display: block;left: 0px;top: 0px;z-index: 1000;cursor: default;min-width: 100px;border: solid 1px transparent;}.ActionsMenuDisabled{color:#bbbbbb;}.ActionsMenuClosed:hover{display: block;left: 0px;top: 0px;z-index: 1000;cursor: pointer;min-width: 100px; background-color: #FAFAFA; border:solid 1px #A4A4A4;  -moz-box-shadow:0px 0px 6px 0px rgba(0, 0, 0, 0.3); -webkit-box-shadow:0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow:0px 0px 6px 0px rgba(0, 0, 0, 0.3); -moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;}.ActionMenuShowDown{left: 0px;top: 0px;}.ActionMenuShowDownNew {left: 0px;top: 0px;float:right; border: solid 1px transparent; background-color: #143169;}.ActionMenuShowUp{left: 0;bottom: 20px;position: absolute;}.ActionMenuItemTop{display: block;clear: both;padding-top: 5px;padding-left: 10px;white-space: nowrap;height: 24px;-moz-border-radius:2px 2px 0px 0px;-webkit-border-radius:2px 2px 0px 0px;border-radius:2px 2px 0px 0px;}.ActionMenuItemTopSmall{display: block;clear: both;white-space: nowrap;height: 5px;-moz-border-radius:2px 2px 0px 0px;-webkit-border-radius:2px 2px 0px 0px;border-radius:2px 2px 0px 0px;}.ActionMenuItemBottom{display: block;clear: both;border-top: solid 0px #999999;padding-top: 0px;padding-right: 0px;padding-left: 0px;white-space: nowrap;height: 5px;-moz-border-radius:0px 0px 2px 2px;-webkit-border-radius:0px 0px 2px 2px;border-radius:0px 0px 2px 2px;}.ActionMenuItem{display: block;clear: both;padding-top: 6px;padding-bottom: 6px;padding-right: 10px;padding-left: 10px;white-space: nowrap;}.ActionMenuItemHover, .ActionMenuItem:hover{display: block;clear: both;padding-top: 6px;padding-bottom: 6px;padding-right: 10px;padding-left: 10px;white-space: nowrap;background-color: #e4e4e4;}.ActionMenuFltLeft{position: relative;float: left;margin: 5px 0px 5px 0px;vertical-align: top;}.ActionMenuFltLeftSpace{height: 1px;font-size: 1px;z-index: 19;}.ActionMenuItemFltTop{position: relative;padding: 2px;padding-left: 5px;white-space: nowrap;-webkit-border-radius: 5px 5px 0px 0px;-moz-border-radius: 5px 5px 0px 0px;border-radius: 5px 5px 0px 0px;}.ActionMenuItemImg{position: relative;vertical-align: middle;margin: 0px 5px 0px 5px;border: none;}.TightMenuItem{display: block;clear: both;padding: 0px 0px 0px 0px;white-space: nowrap;height: 24px;}.AccountMenuNew { background-color:#fff; border:solid 1px #ccc; background-color: #FFFFFF;position: absolute;right: 10px;top: 50px; -moz-border-radius:2px;  -webkit-border-radius:2px;  border-radius:2px; -moz-box-shadow:0px 0px 6px 0px rgba(0, 0, 0, 0.3); -webkit-box-shadow:0px 0px 6px 0px rgba(0, 0, 0, 0.3); box-shadow:0px 0px 6px 0px rgba(0, 0, 0, 0.3);}#ds_divUserAccountsMenuNew:hover { border: solid 1px transparent; background-color: #143169;}.AccountOpenMenuNew { padding-left: 10px;  padding-right: 10px;  white-space: nowrap; width:80px; min-width:80px; height:40px; padding-top:5px; border-left:solid 1px #143169;border-right:solid 1px #143169;}.AccountSelected {height: 29px; text-align: right; padding-top: 9px; margin-right: 20px; float: left; font-size: 11px;color:#FFFFFF;}.UpdateAccount { float: left;  margin-right:10px; padding-top:9px; font-size:11px; color:#FFFFFF;}
+
+
+    .RowHeaderCell{border-right: solid 1px transparent;border-left: solid 1px transparent;border-bottom: solid 1px #ccc;background-color:#fff;height: 23px;vertical-align: middle;border-top: none;white-space: nowrap;padding-left: 4px;padding-right: 4px;cursor:pointer;}.RowHeaderCell:hover{ text-decoration:underline;}.RowHeaderCellNoClick{border-right: solid 1px transparent;border-left: solid 1px transparent;border-bottom: solid 1px #ccc;background-color:#fff;height: 23px;vertical-align: middle;border-top: none;white-space: nowrap;padding-left: 4px;padding-right: 4px;}.RowHeaderSectionBorder{border-right: solid 1px #FFFFFF;border-left: solid 1px #FFFFFF;border-top: solid 1px #DFDFDF;border-bottom: solid 1px #DFDFDF;}.RowHeaderSorted {background-image: url(images/backgrounds/row_col_sorted.png) !important;background-position: bottom !important;}.RowHeaderCellAlignCenter{text-align: center;}.RowHeaderCellLeft{border-left: solid 0px #CCCCCC;}.RowHeaderCellRight{border-right: solid 0px #CCCCCC;}.RowHeaderLink, .RowHeaderLink:hover, .RowHeaderLink:visited{color: #0073cf;text-decoration: none;cursor: pointer;}.RowHeaderLinkDisabled{color: #dedede;text-decoration: none;cursor: default;}.RowNoHover{border-left: solid 0px #cccccc;border-right: solid 0px #cccccc;border-top: solid 1px #cccccc;border-bottom: solid 1px #cccccc;background-color: #ffffff;height: 25px;cursor: default;}.RowAltNoHover{border-left: solid 0px #cccccc;border-right: solid 0px #cccccc;border-top: solid 1px #cccccc;border-bottom: solid 1px #cccccc;background-color: #ffffff;height: 25px;cursor: default;}.RowCellSubHead{border-left: solid 0px #cccccc;border-right: solid 0px #cccccc;border-top: solid 2px #cccccc;border-bottom: solid 1px #cccccc;padding: 3px 4px;}.Row{border-left: solid 0px #cccccc;border-right: solid 0px #cccccc;border-top: solid 1px #cccccc;border-bottom: solid 1px #cccccc;cursor: pointer;}.RowAlt{border-left: solid 0px #cccccc;border-right: solid 0px #cccccc;border-top: solid 1px #cccccc;border-bottom: solid 1px #cccccc;cursor: pointer;}.Row:hover, .RowAlt:hover{background-color: #f4f4f4;}.RowSel, .RowAltSel{border-left: solid 0px #cccccc;border-right: solid 0px #cccccc;border-top: solid 1px #cccccc;border-bottom: solid 1px #cccccc; background-color: #e4e4e4;cursor: pointer;}.RowCell{border-left: none;border-right: solid 1px transparent;border-top: solid 1px #cccccc;border-bottom: solid 1px #cccccc;padding: 3px 0px 3px 4px;}.RowBulkCell{border-left: none;border-right: none;border-bottom: solid 1px #cccccc;vertical-align: top;padding: 3px 0px 3px 2px;}.RowCellRight{border-left: none;border-right: solid 0px transparent;border-top: solid 1px #cccccc;border-bottom: solid 1px #cccccc;padding: 3px 0px 3px 4px;}.RowNoHeight{border-left: solid 0px #cccccc;border-right: solid 0px #cccccc;border-top: solid 1px #cccccc;border-bottom: solid 1px #cccccc;background-color: #ffffff;cursor: pointer;}.RowAltNoHeight{border-left: solid 0px #cccccc;border-right: solid 0px #cccccc;border-top: solid 1px #cccccc;border-bottom: solid 1px #cccccc;background-color: #ffffff;cursor: pointer;}.RowNoHeight:hover, .RowAltNoHeight:hover{background-color: #f4f4f4;}.ColSorted{background-image: url(images/backgrounds/row_col_sorted.png) !important;} 
+.TreeHeader{position: relative;white-space: nowrap;height: 25px;font-weight: normal;padding-left: 4px;padding-top: 0px;margin-bottom: 0px;border-top: solid 1px transparent;}.TreeHeaderText{position: absolute;top: 4px;left: 20px;}.TreeHeaderTextNotTop{position: absolute;top: 13px;left: 20px;}.TreeHeaderActive{height: 25px;background-image: none;font-weight: bold;border: solid 1px transparent;}.TreeHeaderActiveNotTop{margin-top: 10px;padding-top: 10px;border-top: solid 1px transparent;}.TreeHeaderSel{font-weight: bold; background-image: url(Images/backgrounds/dialog_green_h_rotated.png);}.TreeNewItem{ font-size:11px;position: absolute;top: 4px;right: 10px;font-weight: normal;}.TreeNewItemNotTop{ font-size:11px;position: absolute;top: 13px;right: 10px;font-weight: normal;}.TreeNodeSel{-webkit-user-select: none; -khtml-user-select: none;-moz-user-select: none;-o-user-select: none;user-select: none;padding-top: 2px;padding-bottom: 2px;background-image:url(Images/backgrounds/manage_selector.png);background-repeat:repeat-x;}.TreeNode{-webkit-user-select: none; -khtml-user-select: none;-moz-user-select: none;-o-user-select: none;user-select: none;padding-top: 2px;padding-bottom: 2px;}.TreeNode:Hover{-webkit-user-select: none; -khtml-user-select: none;-moz-user-select: none;-o-user-select: none;user-select: none;padding-top: 2px;padding-bottom: 2px;background-color: #f4f4f4;}.TreeNodeNoH {-webkit-user-select: none; -khtml-user-select: none;-moz-user-select: none;-o-user-select: none;user-select: none;padding-top: 2px;padding-bottom: 2px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+<style id="ds_litStyle" type="text/css"></style>
+    
+    <style id="ds_hldrHTMLHead_litStyle" type="text/css">
+.BtnFloatRight{position:relative;float:right;margin-right:20px;}</style>
+    <style id="ds_hldrHTMLHead_litPFStyle" type="text/css">
+        .dialog {
+            position: relative;
+            width: 580px;
+            background-color: white;
+            border: solid 1px #00b0ef;
+            border-radius: 2px;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            box-shadow: 0px 1px 4px 0px rgba(0,0,0,.2);
+            -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,.2);
+            -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,.2);
+        }
+        .title {
+            font-size: 28px;
+            color: #333333;
+        }
+        .subtitle {
+            font-size: 16px;
+            color: #333333;
+            margin-top: 20px;
+        }
+        .label {
+            font-size: 16px;
+            color: #999999;
+        }
+        .labelRole {
+            font-size: 16px;
+            color: #999999;
+            margin-top: 20px;
+        }
+        .content {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333333;
+        }
+        .input {
+            width: 400px;
+            height: 34px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333333;
+            padding: 0 10px;
+            margin-top: 4px;
+            border: solid 1px #cccccc;
+            border-radius: 2px;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,.15);
+            -webkit-box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,.15);
+            -moz-box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,.15);
+        }
+        .button {
+            font-size: 20px;
+            height:40px;
+            background-color:yellow;
+            background-image: url(Images/backgrounds/button_gradient_40.png);
+            background-repeat: repeat-x;
+        }
+        .Btnprimary
+        {
+            background-color: #FE7328 !important; color: #FFFFFF !important;
+        }
+    </style>
+    
+
+
+    <script language="javascript" type="text/javascript">
+        var bdyId = "ds_hldrBdy_";
+        var formbodyId = "ds_FormBody";
+        var borderId = "ds_Border";
+        var headertabsId = "ds_Tabs";
+        var headerId = "ds_Header";
+        var footerId = "ds_Footer";
+        var tiId = "ds_ti";
+        var headerContentId = "ds_hldrHC_";
+        var hldrOutside = "ds_hldrOutside_";
+        var masterIsMobile = "false";
+        var masterIsSafari = "false";
+        var leavemastermenuopen = false;
+
+        function BtnCancelMD(btn) { if (btn && btn.onmousedown != null) btn.onmousedown = null; }
+        function ChangeSelectedAccount(accountid,confirmMsg) {
+            if (true) {
+                if (confirmMsg == "" || confirm(confirmMsg)) {
+                    if (typeof(CancelAsynch) != "undefined") CancelAsynch();
+                    document.getElementById("hdnSetSelectedAccount").value=accountid;
+                    if (typeof(txtHtmlBlobEscape) != "undefined") txtHtmlBlobEscape();
+                    document.forms[0].submit();
+                }
+            }
+        }        
+        function CE(e) {
+            if (!e) e = window.event;
+            if (e) {
+                if (e.cancelBubble != null) e.cancelBubble = true;
+                if (e.returnValue != null) e.returnValue = false;
+                if (e.preventDefault) e.preventDefault();
+                if (e.stopPropagation) e.stopPropagation();
+            }
+            return false;
+        }
+        function MasterPageAction(which)
+        {
+            if (true) {
+                if (typeof(CancelAsynch) != "undefined") CancelAsynch();
+                document.getElementById("ds_hdnMasterPageAction").value=which;
+                if (typeof(txtHtmlBlobEscape) != "undefined") txtHtmlBlobEscape();
+                document.forms[0].submit();
+            }
+        }
+        function ChangeSite(site, accountId)
+        {
+            MasterPageAction(site);
+        }
+        function CloseMasterPageMenus() {
+            if (leavemastermenuopen) {
+                leavemastermenuopen = false;
+                return;
+            }
+            ShowAccounts(true);
+            var acttop = document.getElementById("ds_divUserAccountsMenu");
+            if (acttop) acttop.className = "ActionsMenuClosed HeaderLink";
+            var menu = document.getElementById("divAccountMenuItems");
+            if (!menu) menu = document.getElementById("divAccountMenuItemsNew");
+            if (menu) menu.style.display="none";
+            menu = document.getElementById("ds_divUserAccountsMenuNew");
+            if (menu) menu.className = "ActionsMenuClosed";
+            acttop = document.getElementById("ds_divLanguageMenu");
+            if (acttop) acttop.className = "FooterMenuClosed";
+            menu = document.getElementById("divLanguageMenuItems");
+            if (menu) menu.style.display="none";
+            menu = document.getElementById("divSiteItems");
+            if (menu) menu.style.display="none";
+            acttop = document.getElementById("ds_divHelpMenu");
+            if (acttop) acttop.className = "FooterMenuClosed";
+            var menu = document.getElementById("divHelpMenuItems");
+            if (menu) menu.style.display="none";
+            acttop = document.getElementById("ds_divTermsMenu");
+            if (acttop) acttop.className = "FooterMenuClosed";
+            var menu = document.getElementById("divTermsMenuItems");
+            if (menu) menu.style.display="none";
+            acttop = document.getElementById("ds_divIPMenu");
+            if (acttop) acttop.className = "FooterMenuClosed";
+            var menu = document.getElementById("divIPMenuItems");
+            if (menu) menu.style.display="none";
+            if (typeof(LoadedSetDocMouseDown) != "undefined") LoadedSetDocMouseDown();
+            
+            var helpacttop = document.getElementById('divHelpMenu');
+            if (helpacttop) acttop.className='ActionsMenuClosed';
+            var helpmenu = document.getElementById('divHelpMenuItems');
+            if (helpmenu) helpmenu.style.display='none';
+        }
+        function OpenMasterPageMenu(mi, outer, css)
+        {
+            if (document.getElementById(mi) && document.getElementById(mi).style.display=='none') {
+                var acttop = document.getElementById("ds_" + outer);
+                if (acttop) acttop.className="ActionsMenu " + css;
+                
+                /* get before display for positioning */
+                var startl = 0;
+                if (mi == "divLanguageMenuItems") {
+                    var selitem = document.getElementById(bdyId + "divLanguageSelected");
+                    if (selitem) {
+                        startl = (selitem.offsetWidth/2);
+                    }
+                }
+                if (mi == "divTermsMenuItems") {
+                    var selitem = document.getElementById("divTermsSelected");
+                    if (selitem) {
+                        startl = (selitem.offsetWidth/2);
+                    }
+                }
+                if (mi == "divIPMenuItems") {
+                    var selitem = document.getElementById("divIPSelected");
+                    if (selitem) {
+                        startl = (selitem.offsetWidth/2);
+                    }
+                }
+                if (mi == "divHelpMenuItems") {
+                    var selitem = document.getElementById("divHelpSelected");
+                    if (selitem) {
+                        startl = (selitem.offsetWidth/2);
+                    }
+                }
+                    
+                var midiv = document.getElementById(mi);
+                midiv.style.display='block';
+                if(masterIsMobile)document.ontouchend=CloseMasterPageMenus;
+                document.onmousedown=CloseMasterPageMenus;
+                if (mi == "divLanguageMenuItems" || "divHelpMenuItems" ||"divTermsMenuItems" || "divIPMenuItems") {
+                    var footer = document.getElementById(footerId);
+                    var footerlinks = document.getElementById("divFooterLinks");
+                    var bw = MasterPageBrowserWidth();
+                    if (footer && footerlinks && bw > 0) {
+                        var l = (masterIsSafari=="true") ? startl - (acttop.offsetWidth/2) : 0 - startl - (acttop.offsetWidth/2);
+                        var scrleft = MasterPageScrollLeft();
+                        if ((footerlinks.offsetLeft - scrleft) + l < 0) {
+                            /* if left is off the screen put it at the left edge */
+                            l -= l + (footerlinks.offsetLeft - scrleft);
+                            acttop.style.left = l + "px";
+                        } else {
+                            var right = (footerlinks.offsetLeft + l + acttop.offsetWidth) - scrleft;
+                            if (right > bw) {
+                                l -= (right - bw);
+                                /* if left is off the screen put it at the left edge */
+                                if ((footerlinks.offsetLeft - scrleft) + l < 0) {
+                                    l += (right - bw);
+                                    l -= l + (footerlinks.offsetLeft - scrleft);
+                                }
+                            }
+                            acttop.style.left = (l) + "px";
+                        }
+                    }
+                }else if (mi == "divHelpMenuItems" || "divTermsMenuItems" || "divIPMenuItems") acttop.style.left = 0 + "px";
+            }
+        }
+        function ShowAccounts(hide) {
+            var div = document.getElementById("divAccountMenuItems");
+            if (!div) div = document.getElementById("divAccountMenuItemsNew");
+            if (div) div = div.firstChild;
+            while (div) {
+                if (div.getAttribute && div.getAttribute("isaccount") == "1") {
+                    div.style.display = hide ? "none" : "";
+                }
+                div = div.nextSibling;
+            }
+            if (!hide) leavemastermenuopen = true;
+        }
+        function LogoSizePage() {
+            if (typeof(Size) == "function") Size();
+            if (typeof(ResizeSqueezePage) == "function") {
+                ResizeSqueezePage();
+                ResizeSqueezePage(false,true);
+            }
+            if (typeof(SizeFrames) == "function") { 
+                if (typeof(BrowserDims) != "undefined" && typeof(gHPg) != "undefined") BrowserDims(gHPg);
+                SizeFrames();
+            }
+            if (typeof(SizeWindowObjects) == "function") SizeWindowObjects();
+            if (typeof(ResizeManageAccounts) == "function") ResizeManageAccounts();
+            if (typeof(ResizePage) == "function") ResizePage();
+            if (typeof(SizeContentHeight) == "function") SizeContentHeight();
+            if (typeof(resize) == "function") resize();
+        }
+        function MasterPageBrowserWidth() {
+            var bw = 0;
+            if (typeof(window.innerWidth) != 'undefined') {
+                bw = window.innerWidth;
+            } else if (typeof(document.documentElement) != 'undefined' && document.documentElement.clientWidth) {
+                bw = document.documentElement.clientWidth;
+            } else if (typeof(document.documentElement) != 'undefined' && document.documentElement.offsetWidth) {
+                bw = document.documentElement.offsetWidth;
+            } else {
+                var body = document.getElementsByTagName("body");
+                if (body && body[0] && 
+                    typeof(body[0]) != 'undefined') {
+                    if (typeof(body[0].clientWidth)  != 'undefined' && body[0].clientWidth != 0) {
+                        bw = body[0].clientWidth;
+                    } else if (typeof(body[0].offsetWidth)  != 'undefined' && body[0].offsetWidth != 0) {
+                        bw = body[0].offsetWidth;
+                    }
+                }
+            }
+            return bw;
+        }
+        function MasterPageScrollLeft() {
+            var bL = 0;
+            if (masterIsMobile == "true" && window.pageXOffset != null) {
+                bL = window.pageXOffset;
+            } else if (document.documentElement && document.documentElement.scrollLeft != null) { 
+                bL = document.documentElement.scrollLeft;
+            } else { 
+                bL = document.body.scrollLeft; 
+            }
+            return bL;
+        }
+
+        function upgradeClick() {
+            if (document.forms['upgradeForm'] != null) {
+                if (typeof(addGoogleAnalyticsToUrl) != "undefined") {
+                    document.forms['upgradeForm'].action = addGoogleAnalyticsToUrl(document.forms['upgradeForm'].action);
+                }
+                document.forms['upgradeForm'].submit();
+            }
+            return false;
+        }
+    </script>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        /* ARCH-849 Turn off GA (Still create _gaq array above because code behind adds onclick events that reference it)
+        _gaq.push(['_setAccount', 'UA-229322-21']);
+        _gaq.push(['_setDomainName', 'docusign.net']);
+        _gaq.push(['_setAllowLinker', true]);
+        if (document.referrer && document.referrer.match(/MemberLogin.aspx/))		
+        {
+            _gaq.push(['_setCustomVar',1,'VisitorClass','User', 1]);
+        }
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+        var evalopencalled = false;
+        window._originalOpenFn = window.open;
+        window.open = function () {
+            if (arguments[0]) arguments[0] = addGoogleAnalyticsToUrl(arguments[0]);
+            if (typeof (_originalOpenFn.apply) != "undefined") return _originalOpenFn.apply(this, arguments);
+            else {
+                var evalopen = "window._originalOpenFn(";
+                for (var i = 0; i < arguments.length; i++) {
+                    evalopen += "'" + arguments[i] + "'";
+                    if (i < arguments.length - 1) evalopen += ",";
+                }
+                evalopen += ")";
+                evalopencalled = true;
+                return eval(evalopen);
+            }
+        }
+        */
+        function addGoogleAnalyticsToUrl(url) {
+            if (window._gat
+                && _gat._getTrackerByName
+                && _gat._getTrackerByName()._getLinkerUrl
+                && url
+                && url.match(/docusign\.com/)) {
+                url = _gat._getTrackerByName()._getLinkerUrl(url);
+            }
+            return url;
+        }
+        function addGoogleAnalyticsToIframe(id) {
+            if (window._gaq && window.addGoogleAnalyticsToUrl) {
+                _gaq.push(function () {
+                    var iframe = document.getElementById("ds_hldrBdy_" + id) || document.getElementById(id);
+                    if (iframe) iframe.src = addGoogleAnalyticsToUrl(iframe.src);
+                });
+            }
+        }
+        function onClickWithGA(a) {
+            if (a.href && a.href.match(/docusign\.com/)) {
+                _gaq.push(['_link', a.href]); 
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+    </head>
+
+
+
+<body id="ds_docubody" onload="DoLoadForm();">
+    <form method="post" action="PowerFormSigning.aspx?PowerFormId=91e28b6c-bc93-47ed-8d1e-1f81083529d6" id="aspnetForm">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJNDM3NTM0MDkyD2QWAmYPZBYEZg9kFgICDA9kFgJmDxYCHgRUZXh0ZWQCAg8WAh4Gb25sb2FkBQ1Eb0xvYWRGb3JtKCk7FggCAQ9kFgICBw9kFggCAQ8PFgIeB1Zpc2libGVoZBYMAgEPFgIfAmhkAgMPZBYCAgEPFgIfAAUWU2V0IGFjY291bnQgYXMgZGVmYXVsdGQCBw9kFgICAw9kFgJmDxYMHgdvbmNsaWNrBRZyZXR1cm4gdXBncmFkZUNsaWNrKCk7Hglpbm5lcmh0bWxlHghkaXNhYmxlZGQeCm9ua2V5cHJlc3MFaGlmKGV2ZW50KXtpZih0eXBlb2YoSXNFbnRlck9yU3BhY2VLZXkpIT09J3VuZGVmaW5lZCcmJklzRW50ZXJPclNwYWNlS2V5KGV2ZW50KSl7cmV0dXJuIHVwZ3JhZGVDbGljaygpO319HhBDYXVzZXNWYWxpZGF0aW9uZx4FY2xhc3MFDEJ0bnNlY29uZGFyeWQCCQ8WAh8CaGQCCw8WAh8EBboBPGEgaHJlZj0iaHR0cHM6Ly93d3cuZG9jdXNpZ24uY29tL3N1cHBvcnQgb25jbGljaz0iX2dhcS5wdXNoKFsnX2xpbmsnLCAnaHR0cHM6Ly93d3cuZG9jdXNpZ24uY29tL3N1cHBvcnQnXSk7IHJldHVybiBmYWxzZTsiIiB0YXJnZXQ9IkRvY3VTaWduSGVscCIgY2xhc3M9IkRlZmF1bHRMaW5rIEhlYWRlckxpbmsiPkhlbHA8L2E+ZAINDxYCHwAFBkxvZ291dGQCBQ9kFgoCAQ8PFgYeCEltYWdlVXJsBSUvTWVtYmVyL0ltYWdlcy9sb2dvX2RvY3VzaWduX2JsdWUucG5nHg1BbHRlcm5hdGVUZXh0BQhEb2N1U2lnbh4HVG9vbFRpcAUIRG9jdVNpZ24WBh8BBQ5Mb2dvU2l6ZVBhZ2UoKR8DBSJ3aW5kb3cubG9jYXRpb24uaHJlZiA9ICdIb21lLmFzcHgnHwYFIndpbmRvdy5sb2NhdGlvbi5ocmVmID0gJ0hvbWUuYXNweCdkAgMPDxYEHwoFD0xlZnQgTG9nbyBGcmFtZR8CaBYEHwMFIndpbmRvdy5sb2NhdGlvbi5ocmVmID0gJ0hvbWUuYXNweCcfBgUid2luZG93LmxvY2F0aW9uLmhyZWYgPSAnSG9tZS5hc3B4J2QCBA8PFggfCQUlL01lbWJlci9JbWFnZXMvbG9nb19kb2N1c2lnbl9ibHVlLnBuZx8KBQhEb2N1U2lnbh8LBQhEb2N1U2lnbh8CaBYGHwEFDkxvZ29TaXplUGFnZSgpHwMFIndpbmRvdy5sb2NhdGlvbi5ocmVmID0gJ0hvbWUuYXNweCcfBgUid2luZG93LmxvY2F0aW9uLmhyZWYgPSAnSG9tZS5hc3B4J2QCBQ8PFgQfCgUQUmlnaHQgTG9nbyBGcmFtZR8CaBYEHwMFIndpbmRvdy5sb2NhdGlvbi5ocmVmID0gJ0hvbWUuYXNweCcfBgUid2luZG93LmxvY2F0aW9uLmhyZWYgPSAnSG9tZS5hc3B4J2QCCQ8PFgIfAmhkZAIHDw8WAh8CaGQWCgIBDxYCHwJoZAIDDxYCHwJoZAIJDxYCHwJoZAIPD2QWAgIBDxYCHwAFFlNldCBhY2NvdW50IGFzIGRlZmF1bHRkAhUPFgIfAAUGTG9nb3V0ZAILD2QWAgIBD2QWBGYPFgIfAmhkAgEPZBYCZg9kFgICAw9kFgYCAQ8PFgIfAmdkZAIFDxYEHgVzdHlsZQWQAi13ZWJraXQtYm94LXNoYWRvdzowcHggMHB4IDMwcHggIzMzMzMzMztib3JkZXI6c29saWQgMXB4ICMzMzMzMzM7d2lkdGg6MzAwcHg7LW1vei1ib3gtc2hhZG93OjBweCAwcHggMzBweCAjMzMzMzMzOy1tb3otYm9yZGVyLXJhZGl1czo4cHggOHB4IDJweCAycHg7Ym94LXNoYWRvdzowcHggMHB4IDMwcHggIzMzMzMzMzstd2Via2l0LWJvcmRlci1yYWRpdXM6OHB4IDhweCAycHggMnB4O2JhY2tncm91bmQtY29sb3I6d2hpdGU7Ym9yZGVyLXJhZGl1czo4cHggOHB4IDJweCAycHg7HwJoFgRmD2QWAmYPFgIfDAWOAmJvcmRlci1ib3R0b206c29saWQgMHB4ICMzMzMzMzM7LXdlYmtpdC1ib3JkZXItcmFkaXVzOjhweCA4cHggMHB4IDBweDstbW96LWJvcmRlci1yYWRpdXM6OHB4IDhweCAwcHggMHB4O2JvcmRlci1yYWRpdXM6OHB4IDhweCAwcHggMHB4O2JhY2tncm91bmQtcmVwZWF0OnJlcGVhdC14O2JhY2tncm91bmQtaW1hZ2U6dXJsKGJhY2tncm91bmQtaW1hZ2U6dXJsKEltYWdlcy9iYWNrZ3JvdW5kcy9kaWFsb2dfYnJvd25faC5wbmcpOyk7YmFja2dyb3VuZC1jb2xvcjojODg4OThCOxYCAgEPD2QWAh8MBR1mb250LXNpemU6MTVweDtjb2xvcjojRkZGRkZGO2QCAg9kFgICAQ9kFgICAQ9kFgJmDxYMHwMFWGlmKEVtYWlsVXNlck5hbWVWYWxpZCgpKXtHZXRFKCdoZG5TdWJtaXRTaWduaW5nJykudmFsdWU9JzEnO2RvY3VtZW50LmZvcm1zWzBdLnN1Ym1pdCgpO30fBGUfBWQfBgWqAWlmKGV2ZW50KXtpZih0eXBlb2YoSXNFbnRlck9yU3BhY2VLZXkpIT09J3VuZGVmaW5lZCcmJklzRW50ZXJPclNwYWNlS2V5KGV2ZW50KSl7aWYoRW1haWxVc2VyTmFtZVZhbGlkKCkpe0dldEUoJ2hkblN1Ym1pdFNpZ25pbmcnKS52YWx1ZT0nMSc7ZG9jdW1lbnQuZm9ybXNbMF0uc3VibWl0KCk7fX19HwdnHwgFGkJ0bkZsb2F0UmlnaHQgQnRuc2Vjb25kYXJ5ZAIHDxYCHwwFJXdpZHRoOjU4MHB4O21hcmdpbjo0MHB4IDBweCAwcHggMzBweDsWBGYPZBYCZg9kFgICAQ8WAh8ABV5QbGVhc2UgY29tcGxldGUgdGhlIFZlcmlmaWNhdGlvbiBvZiBEZWF0aCBGb3JtIGFuZCBpdCB3aWxsIGJlIHNlbnQgdGhydSBEb2N1U2lnbiB0byBMaW5rZWRJbi4gZAIBD2QWAmYPZBYCAgEPDxYCHwBlZGQCBQ8WAh8AZWQCBw8WAh8CaGQCCQ8PFgIfAmhkZGRRvTRsd6upm3suQcKWT+mIrr1xUhUTsq57txF0YevPJpcuMnQrWMPmwNFcMDZacWurxqB+cMDMtm23PiOQ2xr1" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAApqJBXfNQ7VCf1b+ZGvZRqUUxg2eR5ftqPriAH4UyjRrHc9wrbHQpcOPAAI5iaiKfEjfnQKuvkmkT7P7F1qwhDlI2KH6uNN3NDt5ua9Rn5z+i4rYwlY+gwUYCD4oZF8kCci7MsZlHzQPJ/XbvUYONDDBKEcT8dI+DVZ1rjCkSiXSLjFSvzcHHJJWYCBY9//ftmeqjjZbTJe5B33ULfSZeIEVvjk35cDxuvyAfDWJb4PdaosLTxqr4XNdWyArLK53j0/w6jiW5eAzykEEuBi0SNt5cQzSFPpIRrPElfPsbYejg==" />
+</div>
+        <div id="ds_divInstance" style="display: none;">
+9
+</div>
+        <input type="hidden" name="ds$ti" id="ds_ti" />
+        <input type="hidden" name="hdnSetSelectedAccount" id="hdnSetSelectedAccount" value="" />
+        <input name="ds$hdnMasterPageAction" type="hidden" id="ds_hdnMasterPageAction" />
+        <div id="ds_Border" class="Border">
+	
+            
+            
+            <div id="ds_Tabs" class="TabsHolder">
+		
+                <img id="ds_LogoLeft" title="DocuSign" class="LogoLeft" onload="LogoSizePage()" onclick="window.location.href = &#39;Home.aspx&#39;" onkeypress="window.location.href = &#39;Home.aspx&#39;" src="/Member/Images/logo_docusign_blue.png" alt="DocuSign" style="border-width:0px;" />
+                
+                
+                
+                <div id="ds_TabsClr" class="SctClr">
+
+		</div>
+            
+	</div>
+
+            
+            
+
+
+            <div id="ds_Header" class="Header">
+		
+                <div id="ds_HeaderContent" class="HeaderContent">
+			
+                    
+                
+		</div>
+                <div style="position: relative; clear: both; height: 1px; font-size: 1px;"></div>
+            
+	</div>
+
+            <div id="ds_FormBody" class="FormBody">
+		
+                
+    <table id="tblStartSigning" align="center" style="width:100%">
+        <tr><td align="center">
+        <br /><br />
+        <span id="spanStartMsg">Initializing</span><br /><br /><br />
+        <img src="Images/Patr/PleaseWaitBig.gif" /><br /><br /><br />
+        Please Wait...
+        <br /><br /><br />
+        </td></tr>
+    </table>
+	<table id="tableContent" width="100%" border="0" style="display: none">
+	    
+		<tr id="ds_hldrBdy_trRecipients">
+			<td class="ContentAreaBackground" valign="top" style="padding-top:35px; padding-left:35px;">
+                
+		        <div id="ds_hldrBdy_pnlFillRole">
+				
+                <div id="ds_hldrBdy_SigningReskin_pnlPFDialog">
+					
+                <div class="dialog" style="top:30px; left:30px;">
+                    <div style="padding:40px">
+                        <div class="title">
+                            PowerForm Signer Information
+                        </div>
+                        <div id="ds_hldrBdy_pnlRecips">
+						<div>
+							<div class='subtitle'>Please enter your name and email <br />to begin the signing process.</div><div class='labelRole'>Your Role:</div><div class='content' style='padding:10px; display:inline-block'>Member</div><input type='hidden' name='hdnRecipientRole_1' value='Member' /> <span class='ErrorMessageText' style='position:relative; top:-8px'>*</span><div class='label'>Your Name:</div><input name="ds$hldrBdy$Member_UserName" type="text" id="ds_hldrBdy_Member_UserName" class="content input" required="true" role="Member" tabIndex="1" maxlength="100" /><div class='label' style='margin-top:18px'>Your Email:</div><input name="ds$hldrBdy$Member_Email" type="text" id="ds_hldrBdy_Member_Email" class="content input" required="true" role="Member" tabIndex="1" maxlength="100" /><div class='subtitle'>Please provide information for any other <br />signers needed for this document.</div><div class='labelRole'>Role:</div><div class='content' style='padding:10px; display:inline-block'>LinkedIn IP Rights</div><input type='hidden' name='hdnRecipientRole_2' value='LinkedIn IP Rights' /><div class='label'>Name:</div><input name="ds$hldrBdy$LinkedIn IP Rights_UserName" type="text" id="ds_hldrBdy_LinkedIn IP Rights_UserName" class="content input" required="false" role="LinkedIn IP Rights" tabIndex="1" maxlength="100" value="LinkedIn IP Rights" /><div class='label' style='margin-top:18px'>Email:</div><input name="ds$hldrBdy$LinkedIn IP Rights_Email" type="text" id="ds_hldrBdy_LinkedIn IP Rights_Email" class="content input" required="false" role="LinkedIn IP Rights" tabIndex="1" maxlength="100" value="iprights@linkedin.com" />
+						</div>
+					</div>
+                        <div style="margin:80px 0">
+                            <button type="button" class="BtnHeight40 Btnyellow_new" onclick="BeginSigning()" style="float:right; position:relative; bottom:40px">
+                                Begin Signing
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+				</div>
+                
+				
+		        <table id="ds_hldrBdy_tblInstructions" cellspacing="0" cellpadding="0" border="0" style="width:580px;margin:40px 0px 0px 30px;">
+					<tr>
+						<td class="ContentText">
+		            Please complete the Verification of Death Form and it will be sent thru DocuSign to LinkedIn. 
+		             </td>
+					</tr>
+					<tr>
+						<td class="ContentText" style="padding-top:15px;">
+		                    <span id="ds_hldrBdy_lblSendError" class="ErrorMessageText"></span>
+		                </td>
+					</tr>
+				</table>
+				
+                
+			</div>
+			</td>
+		</tr>
+		
+	</table>
+    <span id="ds_hldrBdy_lblLoadError" class="ErrorMessageText"></span>
+    <input type="hidden" name="ds$hldrBdy$hdnStartValues" id="ds_hldrBdy_hdnStartValues" value="PowerFormId=91e28b6c-bc93-47ed-8d1e-1f81083529d6;" />
+    <input type="hidden" name="ds$hldrBdy$hdnMainRecipientRole" id="ds_hldrBdy_hdnMainRecipientRole" value="Member" />
+    <input type="hidden" name="ds$hldrBdy$hdnPersistOriginal" id="ds_hldrBdy_hdnPersistOriginal" />
+    <input type="hidden" id="hdnSubmitSigning" name="hdnSubmitSigning" value="" />
+
+            
+	</div>
+        
+</div>
+        
+            <div id="popupMask"></div>
+        
+        <div id="ds_Footer" class="Footer">
+	
+            <img id="ds_imgLogoFooter" title="Powered by DocuSign" class="FooterImage" src="Images/logo_poweredby_blue.png" alt="Powered by DocuSign" />
+            
+            <div class="FooterLinks" id="divFooterLinks">
+                <div id="ds_divLanguageMenu" class="FooterMenuClosed">
+                    <div id="divLanguageMenuItems" style="display: none;">
+                        <div class="ActionMenuItemTopSmall" onmousedown="CloseMasterPageMenus();" onkeydown="CloseMasterPageMenus();"></div><table role="presentation"><tr><td><div title="Chinese" class="ActionMenuItem" ontouchstart="if (window.BtnCancelMD) { window.BtnCancelMD(this);}" ontouchend="MasterPageAction('setlang-zh_CN');return CE(event);" onmousedown="MasterPageAction('setlang-zh_CN')" onkeydown="MasterPageAction('setlang-zh_CN')">中文 </div></td><td><div title="Dutch" class="ActionMenuItem" ontouchstart="if (window.BtnCancelMD) { window.BtnCancelMD(this);}" ontouchend="MasterPageAction('setlang-nl');return CE(event);" onmousedown="MasterPageAction('setlang-nl')" onkeydown="MasterPageAction('setlang-nl')">Nederlandse</div></td><td><div title="English" class="ActionMenuItem" ontouchstart="if (window.BtnCancelMD) { window.BtnCancelMD(this);}" ontouchend="MasterPageAction('setlang-en');return CE(event);" onmousedown="MasterPageAction('setlang-en')" onkeydown="MasterPageAction('setlang-en')">English</div></td><td><div title="French" class="ActionMenuItem" ontouchstart="if (window.BtnCancelMD) { window.BtnCancelMD(this);}" ontouchend="MasterPageAction('setlang-fr');return CE(event);" onmousedown="MasterPageAction('setlang-fr')" onkeydown="MasterPageAction('setlang-fr')">Français</div></td></tr><tr><td><div title="German" class="ActionMenuItem" ontouchstart="if (window.BtnCancelMD) { window.BtnCancelMD(this);}" ontouchend="MasterPageAction('setlang-de');return CE(event);" onmousedown="MasterPageAction('setlang-de')" onkeydown="MasterPageAction('setlang-de')">Deutsch</div></td><td><div title="Italian" class="ActionMenuItem" ontouchstart="if (window.BtnCancelMD) { window.BtnCancelMD(this);}" ontouchend="MasterPageAction('setlang-it');return CE(event);" onmousedown="MasterPageAction('setlang-it')" onkeydown="MasterPageAction('setlang-it')">Italiano</div></td><td><div title="Japanese" class="ActionMenuItem" ontouchstart="if (window.BtnCancelMD) { window.BtnCancelMD(this);}" ontouchend="MasterPageAction('setlang-ja');return CE(event);" onmousedown="MasterPageAction('setlang-ja')" onkeydown="MasterPageAction('setlang-ja')">日本語</div></td><td><div title="Korean" class="ActionMenuItem" ontouchstart="if (window.BtnCancelMD) { window.BtnCancelMD(this);}" ontouchend="MasterPageAction('setlang-ko');return CE(event);" onmousedown="MasterPageAction('setlang-ko')" onkeydown="MasterPageAction('setlang-ko')">한국어</div></td></tr><tr><td><div title="Portuguese (Portugal)" class="ActionMenuItem" ontouchstart="if (window.BtnCancelMD) { window.BtnCancelMD(this);}" ontouchend="MasterPageAction('setlang-pt');return CE(event);" onmousedown="MasterPageAction('setlang-pt')" onkeydown="MasterPageAction('setlang-pt')">Português (Portugal)</div></td><td><div title="Portuguese (Brasil)" class="ActionMenuItem" ontouchstart="if (window.BtnCancelMD) { window.BtnCancelMD(this);}" ontouchend="MasterPageAction('setlang-pt_BR');return CE(event);" onmousedown="MasterPageAction('setlang-pt_BR')" onkeydown="MasterPageAction('setlang-pt_BR')">Português (Brasil)</div></td><td><div title="Russian" class="ActionMenuItem" ontouchstart="if (window.BtnCancelMD) { window.BtnCancelMD(this);}" ontouchend="MasterPageAction('setlang-ru');return CE(event);" onmousedown="MasterPageAction('setlang-ru')" onkeydown="MasterPageAction('setlang-ru')">Русский</div></td><td><div title="Spanish" class="ActionMenuItem" ontouchstart="if (window.BtnCancelMD) { window.BtnCancelMD(this);}" ontouchend="MasterPageAction('setlang-es');return CE(event);" onmousedown="MasterPageAction('setlang-es')" onkeydown="MasterPageAction('setlang-es')">Español</div></td></tr><tr><td><div title="Browser Default Language" class="ActionMenuItem" ontouchstart="if (window.BtnCancelMD) { window.BtnCancelMD(this);}" ontouchend="MasterPageAction('setlang-browser');return CE(event);" onmousedown="MasterPageAction('setlang-browser')" onkeydown="MasterPageAction('setlang-browser')">Browser Default Language</div></td></table>
+                    </div>
+                </div>
+                <div id="ds_divLanguageSelected" onkeyup="OpenMasterPageMenu(&#39;divLanguageMenuItems&#39;,&#39;divLanguageMenu&#39;, &#39;ActionMenuShowUp&#39;);" onmouseup="OpenMasterPageMenu(&#39;divLanguageMenuItems&#39;,&#39;divLanguageMenu&#39;, &#39;ActionMenuShowUp&#39;);" style="padding-right: 10px; white-space: nowrap; text-align: center;">
+                    English (US) <img src="Images/controls/btn_arrow_u.png" style="vertical-align:middle;" border="0" alt="Up Arrow" />
+                </div>
+            </div>
+            <a tabindex='0' id="TermsOfUse" onclick="window.open('http://www.docusign.com/terms_of_use/','TermsOfUse'); return false;" onkeypress="if(event){if(typeof(IsEnterOrSpaceKey)!=='undefined'&&IsEnterOrSpaceKey(event)){window.open('http://www.docusign.com/terms_of_use/','TermsOfUse');return false;}}" class="FooterLink" href='javascript:void(0);'>Terms Of Use</a><span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><a tabindex='0' id="CorporateSupport" onclick="window.open('https://www.docusign.com/support','CorporateSupport'); return false;" onkeypress="if(event){if(typeof(IsEnterOrSpaceKey)!=='undefined'&&IsEnterOrSpaceKey(event)){window.open('https://www.docusign.com/support','CorporateSupport');return false;}}" class="FooterLink" href='javascript:void(0);'>Support</a><span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><a tabindex='0' id="Feedback" onclick="window.open('http://community.docusign.com/t5/Feedback/ct-p/feedback','Feedback'); return false;" onkeypress="if(event){if(typeof(IsEnterOrSpaceKey)!=='undefined'&&IsEnterOrSpaceKey(event)){window.open('http://community.docusign.com/t5/Feedback/ct-p/feedback','Feedback');return false;}}" class="FooterLink" href='javascript:void(0);'>Feedback</a><span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><a tabindex='0' id="IntellectualProp" onclick="window.open('http://www.docusign.com/IP/','IntellectualProp'); return false;" onkeypress="if(event){if(typeof(IsEnterOrSpaceKey)!=='undefined'&&IsEnterOrSpaceKey(event)){window.open('http://www.docusign.com/IP/','IntellectualProp');return false;}}" class="FooterLink" href='javascript:void(0);'>Intellectual Property</a><span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><a tabindex='0' id="PrivacyPolicy" onclick="window.open('http://www.docusign.com/company/privacy-policy','PrivacyPolicy'); return false;" onkeypress="if(event){if(typeof(IsEnterOrSpaceKey)!=='undefined'&&IsEnterOrSpaceKey(event)){window.open('http://www.docusign.com/company/privacy-policy','PrivacyPolicy');return false;}}" class="FooterLink" href='javascript:void(0);'>Privacy Policy</a><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copyright © 2014 DocuSign, Inc. All rights reserved.</span>
+            
+            
+            <div class="SctClr"></div>
+        
+</div>
+
+    </form>
+
+    
+    
+    
+    
+</body>
+
+
+<script src="Script/PowerFormsCommon.js" language="javascript" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+function DoLoadForm() {
+    window.onresize = SizeContentHeight;
+    SizeContentHeight();
+    
+    GetE("tblStartSigning").style.display = "none";
+    if (GetE("lblStartError") && GetE("lblStartError").innerHTML != "")
+    {
+        GetE("pnlFillRole").style.display = "none";   
+    }
+    GetE("tableContent").style.display = "";
+}
+
+function DisplayError() {
+    window.onresize = SizeContentHeight;
+    SizeContentHeight();
+    
+    GetE("tblStartSigning").style.display = "none";
+    if (GetE("lblStartError") && GetE("lblStartError").innerHTML != "")
+    {
+        GetE("pnlFillRole").style.display = "none";   
+    }
+    if (GetE("lblLoadError") && GetE("lblLoadError").innerHTML != "")
+        GetE("lblLoadError").style.display = "";
+}
+
+function CustomTrim(s)
+{
+     var m = s.match(/^\s*(\S+(\s+\S+)*)\s*$/);
+     return (m == null) ? '' : m[1];
+}
+
+function EmailUserNameValid()
+{
+	var i = 0;
+    var regExEmail =  /^((([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,})))$/;
+    
+    var elems = document.getElementsByTagName("input");
+	if (elems != null)
+	{
+	    var mainrole = GetE("hdnMainRecipientRole").value;
+		for (i = 0; i < elems.length; i++) {
+		    if (elems[i].id != null && (elems[i].id.indexOf("_UserName") != -1 || elems[i].id.indexOf("_Email") != -1)) {
+		        elems[i].value = CustomTrim(elems[i].value);
+                if (elems[i].value == '') {
+                    var reqd = elems[i].getAttribute("required");
+                    var role = elems[i].getAttribute("role");
+                    if (role == mainrole || reqd == "True")
+                    {
+                        var erradd = "";
+                        if (role == mainrole) erradd = "Your ";
+                        else "the ";
+                        erradd += role;
+                        if (elems[i].id.indexOf("_UserName") != -1) erradd += " Name";
+                        else erradd += " Email";
+                        
+                        elems[i].focus();
+                        alert('Please supply ' + erradd);
+                        return false;
+                    }
+                }
+                else if (elems[i].id.indexOf("_Email") != -1)
+                {
+                    if (!regExEmail.test(elems[i].value))
+                    {
+                        elems[i].focus();
+                        elems[i].select();
+                        alert('The email entered is not valid.');
+                        return false;
+                    }
+                }
+		    }
+		}
+	}
+	
+    GetE("tableContent").style.display = "none";
+    GetE("spanStartMsg").innerHTML = "Starting the signing process";
+    GetE("tblStartSigning").style.display = "";
+    return true;
+}
+function CloseWindow() {
+    window.close();
+}
+function BeginSigning() {
+    if(EmailUserNameValid()) {
+        GetE('hdnSubmitSigning').value='1';
+        document.forms[0].submit();
+    }
+}
+</script>
+
+
+</html>
