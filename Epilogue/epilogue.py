@@ -108,7 +108,16 @@ class LoginPage(webapp2.RequestHandler):
                 address_state='MA',
                 address_country='US',
                 address_zip='12345'
-            )
+                )
+        elif me.company is 'Google':
+            yourAddress = lob.Address.create(
+                name='Google Inc., Gmail User Support - Decedents Accounts, c/o Google Custodian of Records',
+                address_line1='1600 Amphitheatre Parkway',
+                address_city='Mountain View',
+                address_state='CA',
+                address_country='US',
+                address_zip='94043'
+                )
 
         # pre-made letter that will be sent to businesses
         letter = lob.Object.create(
