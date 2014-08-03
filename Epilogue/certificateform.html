@@ -4,97 +4,99 @@
 <div class="container">
    <h1>Verify Certificate Form</h1>
    <p>We've read your certificate, but we don't always get everything right. Please check our work for errors!</p>
-  <form id="form_register" action="/store" method="post" class="horizontal-form">
+  <form id="form_register" action="/certificate-store" method="post" class="horizontal-form">
     <div class="form-group col-sm-4">
       <label class="control-label">Deceased Name</label>
-      <input type="text" class="form-control" value="{{ user.name }}">
+      <input type="text" class="form-control" name="name" value="{{ user.name }}">
     </div>
     <div class="form-group col-sm-4">
       <label class="control-label">Deceased Sex</label>
-      <input type="text" class="form-control" value="{{ user.sex }}">
+      <input type="text" class="form-control" name="sex" value="{{ user.sex }}">
     </div>
     <div class="form-group col-sm-4">
       <label class="control-label">Deceased Social Security Number</label>
-      <input type="text" class="form-control" value="{{ user.ssn }}">
+      <input type="text" class="form-control" name="ssn" value="{{ user.ssn }}">
     </div>
 
     <div class="form-group col-sm-4">
       <label class="control-label">Age at Death</label>
-      <input type="text" class="form-control" value="{{ user.age_at_death }}">
+      <input type="text" class="form-control" name="age_at_death" value="{{ user.age_at_death }}">
     </div>
     <div class="form-group col-sm-4">
       <label class="control-label">Date of Birth</label>
-      <input type="text" class="form-control" value="{{ user.date_of_birth }}">
+      <input type="text" class="form-control" name="date_of_birth" value="{{ user.date_of_birth }}">
     </div>
     <div class="form-group col-sm-4">
       <label class="control-label">Date of Death</label>
-      <input type="text" class="form-control" value="{{ user.date_of_death }}">
+      <input type="text" class="form-control" name="date_of_death" value="{{ user.date_of_death }}">
     </div>
 
     <div class="form-group col-sm-4">
       <label class="control-label">Deceased Birthplace</label>
-      <input type="text" class="form-control" value="{{ user.birthplace}}">
+      <input type="text" class="form-control" name="birthplace" value="{{ user.birthplace}}">
     </div>
     <div class="form-group col-sm-4">
       <label class="control-label">Deceased Resident State</label>
-      <input type="text" class="form-control" value="{{ user.resident_state }}">
+      <input type="text" class="form-control" name="resident_state" value="{{ user.resident_state }}">
     </div>
     <div class="form-group col-sm-4">
       <label class="control-label">Deceased Resident County</label>
-      <input type="text" class="form-control" value="{{ user.resident_county }}">
+      <input type="text" class="form-control" name="resident_county" value="{{ user.resident_county }}">
     </div>
 
     <div class="form-group col-sm-4">
       <label class="control-label">Deceased Resident Town</label>
-      <input type="text" class="form-control" value="{{ user.resident_town }}">
+      <input type="text" class="form-control" name="resident_town" value="{{ user.resident_town }}">
     </div>
     <div class="form-group col-sm-4">
       <label class="control-label">Deceased Resident Address</label>
-      <input type="text" class="form-control" value="{{ user.resident_address }}">
+      <input type="text" class="form-control" name="resident_address" value="{{ user.resident_address }}">
     </div>
     <div class="form-group col-sm-4">
       <label class="control-label">Deceased Resident Apartment Number</label>
-      <input type="text" class="form-control" value="{{ user.resident_apptnum }}">
+      <input type="text" class="form-control" name="resident_apptnum" value="{{ user.resident_apptnum }}">
     </div>
 
     <div class="form-group col-sm-4">
       <label class="control-label">Deceased Resident Zip Code</label>
-      <input type="text" class="form-control" value="{{ user.resident_zip }}">
+      <input type="text" class="form-control" name="resident_zip" value="{{ user.resident_zip }}">
     </div>
     <div class="form-group col-sm-4">
       <label class="control-label">US Armed Forces?</label>
-      <input type="text" class="form-control" value="{{ user.us_armed_forces }}">
+      <input type="text" class="form-control" name="us_armed_forces" value="{{ user.us_armed_forces }}">
     </div>
     <div class="form-group col-sm-4">
       <label class="control-label">Father's Name</label>
-      <input type="text" class="form-control" value="{{ user.fathers_name }}">
+      <input type="text" class="form-control" name="fathers_name" value="{{ user.fathers_name }}">
     </div>
 
     <div class="form-group col-sm-4">
       <label class="control-label">Mothers Name</label>
-      <input type="text" class="form-control" value="{{ user.mothers_name }}">
+      <input type="text" class="form-control" name="mothers_name" value="{{ user.mothers_name }}">
     </div>
     <div class="form-group col-sm-4">
       <label class="control-label">Surviving Spouse's Name</label>
-      <input type="text" class="form-control" value="{{ user.surviving_spouse_name }}">
+      <input type="text" class="form-control" name="surviving_spouse_name" value="{{ user.surviving_spouse_name }}">
     </div>
     <div class="form-group col-sm-4">
       <label class="control-label">Marital Status at Death</label>
-      <input type="text" class="form-control" value="{{ user.marital_status }}">
+      <input type="text" class="form-control" name="marital_status" value="{{ user.marital_status }}">
     </div>
 
     <div class="form-group col-sm-4">
       <label class="control-label">Your Name</label>
-      <input type="text" class="form-control" value="{{ user.your_name }}">
+      <input type="text" class="form-control" name="your_name" value="{{ user.your_name }}">
     </div>
     <div class="form-group col-sm-4">
       <label class="control-label">Your Relationship to Deceased</label>
-      <input type="text" class="form-control" value="{{ user.your_relationship }}">
+      <input type="text" class="form-control" name="your_relationship" value="{{ user.your_relationship }}">
     </div>
     <div class="form-group col-sm-4">
       <label class="control-label">Your Address</label>
-      <input type="text" class="form-control" value="{{ user.your_address }}">
+      <input type="text" class="form-control" name="your_address" value="{{ user.your_address }}">
     </div>
+
+    <input type="submit" class="btn btn-primary" value="submit">
 
   </form>
 </div>

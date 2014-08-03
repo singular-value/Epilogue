@@ -151,6 +151,37 @@ class CertificateForm(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('certificateform.html')
         self.response.write(template.render({"user": me}))
 
+class CertificateStore(webapp2.RequestHandler):
+    def post(self):
+        me.name = self.request.get('name')
+        me.address = self.request.get('address')
+        me.city = self.request.get('city')
+        me.state = self.request.get('state')
+        me.country = self.request.get('country')
+        me.zip = self.request.get('zip')
+        me.sex = self.request.get('sex')
+        me.ssn = self.request.get('ssn')
+        me.age_at_death = self.request.get('age_at_death')
+        me.date_of_birth = self.request.get('date_of_birth')
+        me.date_of_death = self.request.get('date_of_death')
+        me.birthplace = self.request.get('birthplace')
+        me.resident_state = self.request.get('resident_state')
+        me.resident_county = self.request.get('resident_county')
+        me.resident_town = self.request.get('resident_town')
+        me.resident_address = self.request.get('resident_address')
+        me.resident_apptnum = self.request.get('resident_apptnum')
+        me.resident_zip = self.request.get('resident_zip')
+        me.us_armed_forces = self.request.get('us_armed_forces')
+        me.fathers_name = self.request.get('fathers_name')
+        me.mothers_name = self.request.get('mothers_name')
+        me.surviving_spouse_name = self.request.get('surviving_spouse_name')
+        me.marital_status = self.request.get('marital_status')
+        me.your_name = self.request.get('your_name')
+        me.your_relationship = self.request.get('your_relationship')
+        me.your_address = self.request.get('your_address')
+
+        self.redirect('/')
+
 application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/login', LoginPage),
@@ -164,4 +195,5 @@ application = webapp2.WSGIApplication([
     ('/bank2', FinancePage2),
     ('/certificate-upload', UploadCertificate),
     ('/certificate-form', CertificateForm),
+    ('/certificate-store', CertificateStore)
 ], debug=True)
