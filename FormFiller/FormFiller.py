@@ -24,6 +24,24 @@ class MainPage(webapp2.RequestHandler):
         self.response.write(result)
 
 
+class EmailOptOutPage(webapp2.RequestHandler):
+    def get(self):
+        url = "static/emailoptout.htm"
+        self.response.write("""<html>
+<head>
+<script>
+fill = function() {
+var iframe = document.getElementById('the_form');
+var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+form = innerDoc.forms[0]
+form["email1"].value = "%s"
+}
+</script>
+</head>
+<body><iframe id="the_form" width="1000px" height="800px" src="%s" onload="fill()"></iframe>
+</body></html>""" % ("epiloguesemail@pilog.ue", url))
+
+
 class LinkedInPage(webapp2.RequestHandler):
     def get(self):
         url = "static/linkedin.htm"
@@ -70,5 +88,6 @@ form["Field243993725684212"].value="%s"
 #        self.response.write(result.content.replace("<head>", """<head><base href="%s">""" % url))
 
 application = webapp2.WSGIApplication([
-    ('/', MainPage), ('/fb', FBPage), ('/linkedin', LinkedInPage)
+    ('/', MainPage), ('/fb', FBPage), ('/linkedin', LinkedInPage),
+    ('/emailoptout', EmailOptOutPage)
 ], debug=True)
