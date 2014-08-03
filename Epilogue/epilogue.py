@@ -40,8 +40,10 @@ class MainPage(webapp2.RequestHandler):
 
 class MainPage2(webapp2.RequestHandler):
     def get(self):
-         template = JINJA_ENVIRONMENT.get_template('mainpageform.html')
-         self.response.write(template.render({'message': "index"}))
+        if me.did_deathcertificate:
+            self.redirect("/certificate-form")
+        template = JINJA_ENVIRONMENT.get_template('mainpageform.html')
+        self.response.write(template.render({'message': "index"}))
 
 
 class CertificatePage(webapp2.RequestHandler):
@@ -214,8 +216,6 @@ class UploadCertificate(webapp2.RequestHandler):
 
 class CertificateForm(webapp2.RequestHandler):
     def get(self):
-        if me.did_deathcertificate:
-            self.redirect("/")
         template = JINJA_ENVIRONMENT.get_template('certificateform.html')
         self.response.write(template.render({"user": me}))
 
