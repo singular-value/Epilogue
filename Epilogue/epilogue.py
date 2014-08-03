@@ -157,8 +157,8 @@ class LoginPage(webapp2.RequestHandler):
 class FuneralPage(webapp2.RequestHandler):
     def get(self):
         #print 'FUCK YES THIS WORKS: ' + me.dead_name
-        template = JINJA_ENVIRONMENT.get_template('index.html')
-        self.response.write(template.render({'message': "funeral"}))
+        template = JINJA_ENVIRONMENT.get_template('funeral.html')
+        self.response.write(template.render({'message': "Arrange Funeral Services", 'user': me}))
 
 
 class SocialPage(webapp2.RequestHandler):
