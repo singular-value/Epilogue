@@ -10,7 +10,8 @@
        Snail Mail sent via Lob!
     </div></div>
     {% endif %}
-    <h1>Bank Accounts</h1>
+
+        <h1>Bank Accounts</h1>
     <form id="form_banks" action="/storeBank" method="get" name="bank" class="form">
           <label class="control-label">Who is your major bank? Epilogue will automatically send a letter
           to the bank, powered by Lob.</label>
@@ -19,6 +20,9 @@
             </div>
           <button type="submit" class="btn btn-primary">Close Bank Accounts</button>
     </form>
+      <div class="col-sm-offset-4 col-sm-3">
+
+      </div>
   </div>
     </form>
   <div class="container">
@@ -33,6 +37,11 @@
           <button type="submit" class="btn btn-primary">Notify Insurance Companies</button>
         </div>
     </form>
+
+      <h3> Sample Lob Mail</h3>
+    <a data-toggle="lightbox"><img src="/stylesheets/img/jessie_deathcert.png" class="img-responsive"></a>
+    <a data-toggle="lightbox"><img src="/stylesheets/img/Letter.png" class="img-responsive"></a>
+
 </div>
 {% endblock %}
 {% block jslib %}
