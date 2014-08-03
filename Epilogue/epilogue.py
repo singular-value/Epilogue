@@ -254,7 +254,7 @@ class CertificateStore(webapp2.RequestHandler):
 
         me.did_deathcertificate = True
 
-        self.redirect('/')
+        self.redirect('/next')
 
 class GooglePage(webapp2.RequestHandler):
     def get(self):
@@ -366,6 +366,11 @@ class DidSocial(webapp2.RequestHandler):
             me.did_phone = True
         self.redirect('/social')
 
+class NextPage(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('next.html')
+        self.response.write(template.render({'message': "certificate"}))
+
 class StripeTest(webapp2.RequestHandler):
     def get(self):
         stripebutton = """<form action="" method="POST">
@@ -395,6 +400,9 @@ class StripeTest(webapp2.RequestHandler):
             # The card has been declined
             pass
 
+
+
+
 application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/cert', MainPage2),
@@ -403,6 +411,7 @@ application = webapp2.WSGIApplication([
     ('/funeral', FuneralPage),
     ('/social', SocialPage),
     ('/finance', FinancePage),
+    ('/next', NextPage),
     ('/memberships', MembershipPage),
     ('/store', Store), # doesnt do anything just captures post
     ('/storeBank', StoreBank), # doesnt do anything just captures post
