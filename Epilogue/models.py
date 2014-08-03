@@ -67,3 +67,8 @@ class User(User):
     did_phone = ndb.BooleanProperty(default = False)
     did_postoffice = ndb.BooleanProperty(default = False)
     did_deathcertificate = ndb.BooleanProperty(default = False)
+    did_dropbox = ndb.BooleanProperty(default = False)
+    did_google = ndb.BooleanProperty(default = False)
+    did_twitter = ndb.BooleanProperty(default = False)
+    did_paypal = ndb.BooleanProperty(default = False)
+

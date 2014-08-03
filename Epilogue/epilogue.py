@@ -10,6 +10,7 @@ lob.api_key = 'test_3aa918f64396a4f31c68c80f3238a617d8f'
 from models import User
 me = User()
 status = 0
+myAddress = {}
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -114,7 +115,7 @@ class LoginPage(webapp2.RequestHandler):
                 )
         elif me.company is 'Google':
             yourAddress = lob.Address.create(
-                name='Google Inc., Gmail User Support - Decedents Accounts, c/o Google Custodian of Records',
+                name='Google, Gmail User Support - Decedents Accounts',
                 address_line1='1600 Amphitheatre Parkway',
                 address_city='Mountain View',
                 address_state='CA',
@@ -161,7 +162,8 @@ class SocialPage(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('social.html')
         params = {
             'message': "social media cancellation",
-            'user': me
+            'user': me,
+            'sent': self.request.get('sent', "")
         }
         self.response.write(template.render(params))
 
@@ -252,6 +254,101 @@ class CertificateStore(webapp2.RequestHandler):
 
         self.redirect('/')
 
+class GooglePage(webapp2.RequestHandler):
+    def get(self):
+        me.did_google = True
+
+        myAddress = lob.Address.create(
+            name='test',
+            address_line1=me.resident_address,
+            address_city=me.resident_town,
+            address_state='CA',
+            address_country='US',
+            address_zip=me.resident_zip
+        )
+
+        yourAddress = lob.Address.create(
+            name='Google, Gmail User Support - Decedents Accounts',
+            address_line1='1600 Amphitheatre Parkway',
+            address_city='Mountain View',
+            address_state='CA',
+            address_country='US',
+            address_zip='94043'
+        )
+
+        # pre-made letter that will be sent to businesses
+        letter = lob.Object.create(
+            name='Letter',
+            file=open('Letter.pdf','rb'),
+            setting_id='100',
+            quantity=1
+        )
+
+        certificate = lob.Object.create(
+            name='Death Certificate',
+            file=open('Letter.pdf','rb'),
+            setting_id='100',
+            quantity=1
+        )
+
+        job = lob.Job.create(
+            name='Send out',
+            to_address=yourAddress,
+            from_address=myAddress,
+            objects = [certificate,letter]
+        )
+
+        print job
+
+        self.redirect('/social?sent=google')
+
+class DropBoxPage(webapp2.RequestHandler):
+    def get(self):
+        myAddress = lob.Address.create(
+            name='test',
+            address_line1=me.resident_address,
+            address_city=me.resident_town,
+            address_state='CA',
+            address_country='US',
+            address_zip=me.resident_zip
+        )
+
+        yourAddress = lob.Address.create(
+            name='Dropbox Legal Department Decedents Accounts',
+            address_line1='185 Berry St. Suite 400',
+            address_city='San Francisco',
+            address_state='CA',
+            address_country='US',
+            address_zip='94107'
+        )
+
+        # pre-made letter that will be sent to businesses
+        letter = lob.Object.create(
+            name='Letter',
+            file=open('Letter.pdf','rb'),
+            setting_id='100',
+            quantity=1
+        )
+
+        certificate = lob.Object.create(
+            name='Death Certificate',
+            file=open('Letter.pdf','rb'),
+            setting_id='100',
+            quantity=1
+        )
+
+        job = lob.Job.create(
+            name='Send out',
+            to_address=yourAddress,
+            from_address=myAddress,
+            objects = [certificate,letter]
+        )
+
+        print job
+
+        me.did_dropbox = True
+        self.redirect('/social?sent=dropbox')
+
 application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/cert', MainPage2),
@@ -272,5 +369,7 @@ application = webapp2.WSGIApplication([
     ('/linkedin', FormFiller.LinkedInPage),
     ('/emailoptout', FormFiller.EmailOptOutPage),
     ('/addresschange', FormFiller.AddressChangePage),
-    ('/donotcontact', FormFiller.DoNotContactPage)
+    ('/donotcontact', FormFiller.DoNotContactPage),
+    ('/google', GooglePage),
+    ('/dropbox', DropBoxPage)
 ], debug=True)

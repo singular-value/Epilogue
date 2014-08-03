@@ -13,6 +13,14 @@
 </div>
 
 <div class="top-margin container">
+    {% if sent %}
+    <div class="bs-example">
+        <div class="alert alert-warning fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+       Snail Mail sent via Lob!
+    </div></div>
+    {% endif %}
+
   <div class="row">
   <div class="col-md-2">
     <a class="{% if user.did_email %} deactivated {% endif %}" href="/emailoptout"><i class="fa fa-envelope fa-5x"></i></a>
@@ -33,6 +41,17 @@
   <div class="col-md-2">
     <a class="{% if user.did_postoffice %} deactivated {% endif %}" href="/addresschange"><i class="fa fa-home fa-5x"></i></a>
     <p>Update Postal Service</p>
+  </div>
+  </div>
+  <div class="row">
+   <div class="col-md-2">
+    <a class="{% if user.did_google %} deactivated {% endif %}" href="/google" ><i class="fa fa-google fa-5x"></i></a>
+    <p>Mail Google to cancel account (via Lob)</p>
+  </div>
+  <div class="col-md-2">
+    <a class="{% if user.did_dropbox %} deactivated {% endif %}" href="/dropbox"><i class="fa fa-dropbox fa-5x"></i></a>
+    <p>Mail DropBox to cancel account (via Lob)</p>
+  </div>
   </div>
 </div>
 {% endblock %}
