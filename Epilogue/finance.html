@@ -2,33 +2,37 @@
 {% block title %}Financial Services{% endblock %}
 {% block main_content %}
 <div class="flower" data-value="2"></div>
-<div id="1" class="content-page">
   <div class="container top-margin">
+    {% if sent %}
+    <div class="bs-example">
+        <div class="alert alert-warning fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+       Snail Mail sent via Lob!
+    </div></div>
+    {% endif %}
     <h1>Bank Accounts</h1>
-    <form id="form_banks" action="/storeBank" method="post" class="form">
-        <div class="form-group">
-          <label class="control-label">What are your major banks?</label>
-          <input type="text" class="form-control" placeholder="Bank" id="inputBank"><br>
-        </div>
-        <div class="form-group">
+    <form id="form_banks" action="/storeBank" method="get" name="bank" class="form">
+          <label class="control-label">Who is your major bank? Epilogue will automatically send a letter
+          to the bank, powered by Lob.</label>
+            <div id="the-basics">
+            <input name="bank" class="typeahead" type="text" placeholder="Banks">
+            </div>
           <button type="submit" class="btn btn-primary">Close Bank Accounts</button>
-        </div>
     </form>
   </div>
-</div>
-<div id="2" class="content-page">
+    </form>
   <div class="container">
     <h1>Insurance Companies</h1>
-    <form id="form_insurance" action="/storeBank" method="post" class="form-horizontal">
+    <form id="form_insurance" action="/storeBank" method="get" class="form-horizontal">
         <div class="form-group">
           <label class="control-label">What are your insurance companies?</label>
-          <input type="text" class="form-control" placeholder="Insurance Company" id="inputInsurance"><br>
-        </div>
+<div id="the-basics">
+  <input class="typeahead" type="text" placeholder="Banks">
+</div>
         <div class="form-group">
           <button type="submit" class="btn btn-primary">Notify Insurance Companies</button>
         </div>
     </form>
-  </div>
 </div>
 {% endblock %}
 {% block jslib %}
@@ -36,4 +40,41 @@
   pageNum = {{ page_num }};
 </script>
 <script src="/scripts/flow.js"></script>
+<script>var substringMatcher = function(strs) {
+  return function findMatches(q, cb) {
+    var matches, substrRegex;
+
+    // an array that will be populated with substring matches
+    matches = [];
+
+    // regex used to determine if a string contains the substring `q`
+    substrRegex = new RegExp(q, 'i');
+
+    // iterate through the pool of strings and for any string that
+    // contains the substring `q`, add it to the `matches` array
+    $.each(strs, function(i, str) {
+      if (substrRegex.test(str)) {
+        // the typeahead jQuery plugin expects suggestions to a
+        // JavaScript object, refer to typeahead docs for more info
+        matches.push({ value: str });
+      }
+    });
+
+    cb(matches);
+  };
+};
+
+var states = ['Bank of America', 'Chase'
+];
+
+$('#the-basics .typeahead').typeahead({
+  hint: true,
+  highlight: true,
+  minLength: 1
+},
+{
+  name: 'states',
+  displayKey: 'value',
+  source: substringMatcher(states)
+});</script>
 {% endblock %}
