@@ -391,6 +391,36 @@ class GooglePage(webapp2.RequestHandler):
 
         self.redirect('/social?sent=google')
 
+class DropBoxPay(webapp2.RequestHandler):
+    def get(self):
+        stripebutton = """<form action="" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_4W9LvKOHPuWXpO5h8z7v6q7D"
+    data-amount="200"
+    data-name="Epilogue"
+    data-description="Print & Mail Service, Dropbox ($2.00)"
+    data-image="stylesheets/img/stripelogo.png">
+  </script>
+</form>"""
+        html = """<html><body>%s</body></head>""" % stripebutton
+        self.response.write(html)
+
+    def post(self):
+        token = self.request.get('stripeToken')
+        try:
+            charge = stripe.Charge.create(
+                amount=200, # amount in cents, again
+                currency="usd",
+                card=token,
+                description="payinguser@example.com"
+                )
+        except stripe.CardError, e:
+            # The card has been declined
+            pass
+        self.redirect('/dropboxlob')
+
+
 class DropBoxPage(webapp2.RequestHandler):
     def get(self):
         myAddress = lob.Address.create(
@@ -516,7 +546,8 @@ application = webapp2.WSGIApplication([
     ('/addresschange', FormFiller.AddressChangePage),
     ('/donotcontact', FormFiller.DoNotContactPage),
     ('/google', GooglePage),
-    ('/dropbox', DropBoxPage),
+    ('/dropbox', DropBoxPay),
+    ('/dropboxlob', DropBoxPage),
     ('/stripetest', StripeTest),
     ('/reset', ResetPage)
 ], debug=True)
