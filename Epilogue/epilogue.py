@@ -3,6 +3,7 @@ import urllib, cgi
 
 import jinja2
 import webapp2
+from google.appengine.api import users
 
 lob.api_key = 'test_3aa918f64396a4f31c68c80f3238a617d8f'
 from models import User
@@ -14,12 +15,32 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
+providers = {
+    'Google'   : 'https://www.google.com/accounts/o8/id',
+    'Yahoo'    : 'yahoo.com',
+    'MySpace'  : 'myspace.com',
+    'AOL'      : 'aol.com',
+    'MyOpenID' : 'myopenid.com'
+    # add more here
+}
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
-        status = 1
-        template = JINJA_ENVIRONMENT.get_template('mainpageform.html')
-        self.response.write(template.render({'message': "index"}))
+        user = users.get_current_user()
+        if user:  # signed in already
+            #self.response.out.write('Hello <em>%s</em>! [<a href="%s">sign out</a>]' % (
+            #    user.nickname(), users.create_logout_url(self.request.uri)))
+            self.redirect('/cert')
+        else:     # let user choose authenticator
+            self.response.out.write('Hello world! Sign in at: ')
+            for name, uri in providers.items():
+                self.response.out.write('[<a href="%s">%s</a>]' % (
+                    users.create_login_url(federated_identity=uri), name))
+
+class MainPage2(webapp2.RequestHandler):
+    def get(self):
+         template = JINJA_ENVIRONMENT.get_template('mainpageform.html')
+         self.response.write(template.render({'message': "index"}))
 
 
 class CertificatePage(webapp2.RequestHandler):
@@ -184,6 +205,7 @@ class CertificateStore(webapp2.RequestHandler):
 
 application = webapp2.WSGIApplication([
     ('/', MainPage),
+    ('/cert', MainPage2),
     ('/login', LoginPage),
     ('/certificate', CertificatePage),
     ('/funeral', FuneralPage),
