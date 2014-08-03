@@ -1,5 +1,4 @@
 import webapp2
-import os
 import lob
 
 lob.api_key = 'test_3aa918f64396a4f31c68c80f3238a617d8f'

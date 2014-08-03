@@ -32,3 +32,9 @@ class User(User):
     full_name = ndb.ComputedProperty(lambda self: self.name + " " + self.last_name)
 
     dead_name = ndb.StringProperty()
+
+    address= ndb.StringProperty()
+    city= ndb.StringProperty()
+    state= ndb.StringProperty()
+    country= ndb.StringProperty()
+    zip= ndb.StringProperty()
