@@ -1,6 +1,6 @@
 import os, lob
 import urllib, cgi
-
+import time
 import jinja2
 import webapp2
 from google.appengine.api import users
@@ -41,8 +41,10 @@ class MainPage(webapp2.RequestHandler):
 
 class MainPage2(webapp2.RequestHandler):
     def get(self):
-         template = JINJA_ENVIRONMENT.get_template('mainpageform.html')
-         self.response.write(template.render({'message': "index"}))
+        if me.did_deathcertificate:
+            self.redirect("/certificate-form")
+        template = JINJA_ENVIRONMENT.get_template('mainpageform.html')
+        self.response.write(template.render({'message': "index"}))
 
 
 class CertificatePage(webapp2.RequestHandler):
@@ -80,6 +82,7 @@ class CertificateEnter(webapp2.RequestHandler):
         me.your_name = "Stephen Lambert"
         me.your_relationship = "Son"
         me.your_address = "1532 Willows Way, Los Altos, CA 94024"
+        time.sleep(7)
         self.redirect('/certificate-form')
 
 class LoginPage(webapp2.RequestHandler):
@@ -216,8 +219,6 @@ class UploadCertificate(webapp2.RequestHandler):
 
 class CertificateForm(webapp2.RequestHandler):
     def get(self):
-        if me.did_deathcertificate:
-            self.redirect("/")
         template = JINJA_ENVIRONMENT.get_template('certificateform.html')
         self.response.write(template.render({"user": me}))
 
@@ -349,6 +350,21 @@ class DropBoxPage(webapp2.RequestHandler):
         me.did_dropbox = True
         self.redirect('/social?sent=dropbox')
 
+class DidSocial(webapp2.RequestHandler):
+    def post(self):
+        name = self.request.get('name')
+        if name == "fb":
+            me.did_fb = True
+        elif name == "linkedin":
+            me.did_linkedin = True
+        elif name == "emailoptout":
+            me.did_email = True
+        elif name == "addresschange":
+            me.did_postoffice = True
+        elif name == "donotcontact":
+            me.did_phone = True
+        self.redirect('/social')
+
 application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/cert', MainPage2),
@@ -365,6 +381,7 @@ application = webapp2.WSGIApplication([
     ('/certificate-form', CertificateForm),
     ('/certificate-store', CertificateStore),
     ('/certificate-enter', CertificateEnter),
+    ('/did-social', DidSocial),
     ('/fb', FormFiller.FBPage),
     ('/linkedin', FormFiller.LinkedInPage),
     ('/emailoptout', FormFiller.EmailOptOutPage),

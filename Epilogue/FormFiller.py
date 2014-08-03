@@ -8,6 +8,23 @@ import urllib
 
 from google.appengine.api import urlfetch
 
+head = """<html><head>
+<style>
+#iframe-form {
+position:absolute;
+right: 0;
+top: 50%;
+}
+</style><script>"""
+tail = """</script>
+</head>
+<body><iframe id="the_form" width="1000px" height="800px" src="%s" onload="fill()"></iframe>
+<form id="iframe-form" method="post" action="/did-social">
+  <input type="hidden" name="name" value="%s" />
+  <input type="submit" class="btn btn-primary" value="click here">
+</form>
+</body></html>"""
+
 def fillForm(url, form_fields):
     form_data = urllib.urlencode(form_fields)
     result = urlfetch.fetch(url=url, payload=form_data, method=urlfetch.POST)
@@ -16,10 +33,8 @@ def fillForm(url, form_fields):
 class DoNotContactPage(webapp2.RequestHandler):
     def get(self):
         url = "forms/donotcontact.htm"
-        self.response.write("""<html>
-<head>
-<script>
-fill = function() {
+        self.response.write(head +
+"""fill = function() {
 var iframe = document.getElementById('the_form');
 var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 form = innerDoc.forms[0]
@@ -38,76 +53,52 @@ form["member.lnamesub"].value = "%s"
 form["relate"].value = "%s"
 form["member.email"].value = "%s"
 form["confirmEmail"].value = "%s"
-
-}
-</script>
-</head>
-<body><iframe id="the_form" width="1000px" height="800px" src="%s" onload="fill()"></iframe>
-</body></html>""" % ("Jessie", "K", "Lambert", "851 Church Street", "Mountain View", "CA", "94041", "08", "2014", "62", "Stephen", "Lambert", "Son", "epilogueemail@epilog.ue", "epilogueemail@epilog.ue", url))
+}""" % ("Jessie", "K", "Lambert", "851 Church Street", "Mountain View", "CA", "94041", "08", "2014", "62", "Stephen", "Lambert", "Son", "epilogueemail@epilog.ue", "epilogueemail@epilog.ue")
++ tail % (url, "donotcontact"))
 
 
 class EmailOptOutPage(webapp2.RequestHandler):
     def get(self):
         url = "forms/emailoptout.htm"
-        self.response.write("""<html>
-<head>
-<script>
+        self.response.write(head + """
 fill = function() {
 var iframe = document.getElementById('the_form');
 var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 form = innerDoc.forms[0]
 form["email1"].value = "%s"
-}
-</script>
-</head>
-<body><iframe id="the_form" width="1000px" height="800px" src="%s" onload="fill()"></iframe>
-</body></html>""" % ("epiloguesemail@pilog.ue", url))
+}""" % ("epiloguesemail@pilog.ue") + tail % (url, "emailoptout"))
 
 
 class AddressChangePage(webapp2.RequestHandler):
     def get(self):
         url = "forms/addresschange.htm"
-        self.response.write("""<html>
-<head>
-<script>
+        self.response.write(head + """
 fill = function() {
 var iframe = document.getElementById('the_form');
 var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 form = innerDoc.forms[0]
 form["startDateStr"].value = "%s"
 form["mover.person.firstName"].value = "%s"
-}
-</script>
-</head>
-<body><iframe id="the_form" width="1000px" height="800px" src="%s" onload="fill()"></iframe>
-</body></html>""" % ("08/04/2014","Testing",url))
+}""" % ("08/04/2014","Testing") + tail % (url, "addresschange"))
 
 
 class LinkedInPage(webapp2.RequestHandler):
     def get(self):
         url = "forms/linkedin.htm"
-        self.response.write("""<html>
-<head>
-<script>
+        self.response.write(head + """
 fill = function() {
 var iframe = document.getElementById('the_form');
 var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 form = innerDoc.forms[0]
 form["ds$hldrBdy$Member_UserName"].value="%s"
 form["ds$hldrBdy$Member_Email"].value="%s"
-}
-</script>
-</head>
-<body><iframe id="the_form" width="1000px" height="800px" src="%s" onload="fill()"></iframe>
-</body></html>""" % ("Stephen Lambert", "epiloguesemail@pilog.ue", url))
+}""" % ("Stephen Lambert", "epiloguesemail@pilog.ue") + tail % (url, "linkedin"))
 
 
 class FBPage(webapp2.RequestHandler):
     def get(self):
         url="forms/fb.htm"
-        self.response.write("""<html>
-<head>
-<script>
+        self.response.write(head + """
 fill = function() {
 var iframe = document.getElementById('the_form');
 var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
@@ -118,11 +109,8 @@ form["Field300731829979004"].value="%s"
 form["Field152395278213769"].value="%s"
 form["Field243993725684212"].value="%s"
 form["Field229650377126227"].value="%s"
-}
-</script>
-</head>
-<body><iframe id="the_form" width="1000px" height="800px" src="%s" onload="fill()"></iframe>
-</body></html>""" % ("Jessie Kris Lambert","https://www.facebook.com/bob.cardinal.50","bob.cardinal.epiloguetesting@gmail.com","epiloguesemail@pilog.ue","Immediate family ","Memorialize",url))
+}""" % ("Jessie Kris Lambert","https://www.facebook.com/bob.cardinal.50","bob.cardinal.epiloguetesting@gmail.com","epiloguesemail@pilog.ue","Immediate family ","Memorialize")
+         + tail % (url, "fb"))
 #        url = "https://www.facebook.com/help/contact/305593649477238"
 #        result = urlfetch.fetch(url=url, method=urlfetch.GET)
 #        print result.content
