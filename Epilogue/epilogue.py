@@ -81,7 +81,7 @@ class FuneralPage(webapp2.RequestHandler):
 class SocialPage(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('index.html')
-        self.response.write(template.render({'message': "social"}))
+        self.response.write(template.render({'message': "social media cancellation"}))
 
 
 class FinancePage(webapp2.RequestHandler):
