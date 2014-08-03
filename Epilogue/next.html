@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% block title %}This{% endblock %}
+{% block main_content %}
+ <div class="container">
+   <div class="row">
+     <div class="col-md-12">
+      <h1>Thanks!</h1>
+         <h2>Now that we have your information, let us help you complete your tasks. Pick a section below to get started.</h2>
+     </div>
+   </div>
+
+
+   <div>
+        <form action='/social'> <button type="submit"  class="btn btn-primary">Cancel Social Media</button></form>
+        <form action='/finance'> <button type="submit"  class="btn btn-primary">Deal with Finances</button></form>
+        <form action='/memberships'> <button type="submit"  class="btn btn-primary">Cancel Memberships</button></form>
+        <form action='/certificate'> <button type="submit"  class="btn btn-primary">Plan the Memorial</button></form>
+
+   </div>
+ </div>
+
+{% endblock %}
+{% block jslib %}
+<script>
+  pageNum = {{ page_num }};
+</script>
+<script src="/scripts/flow.js"></script>
+{% endblock %}
