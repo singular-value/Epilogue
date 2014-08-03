@@ -53,7 +53,8 @@ class CertificatePage(webapp2.RequestHandler):
         if me.did_deathcertificate:
             self.redirect("/")
         template = JINJA_ENVIRONMENT.get_template('certificate.html')
-        self.response.write(template.render({'message': "certificate"}))
+        self.response.write(template.render({'message': "certificate",
+                                             'color': 'yellow'}))
 
 class CertificateEnter(webapp2.RequestHandler):
     def get(self):
@@ -158,7 +159,10 @@ class FuneralPage(webapp2.RequestHandler):
     def get(self):
         #print 'FUCK YES THIS WORKS: ' + me.dead_name
         template = JINJA_ENVIRONMENT.get_template('funeral.html')
-        self.response.write(template.render({'message': "Arrange Funeral Services", 'user': me}))
+        self.response.write(template.render(
+            {'message': "Arrange Funeral Services",
+             'user': me,
+             'color': 'pink'}))
 
 
 class SocialPage(webapp2.RequestHandler):
@@ -167,7 +171,8 @@ class SocialPage(webapp2.RequestHandler):
         params = {
             'message': "social media cancellation",
             'user': me,
-            'sent': self.request.get('sent', "")
+            'sent': self.request.get('sent', ""),
+            'color': 'gold'
         }
         self.response.write(template.render(params))
 
@@ -177,7 +182,8 @@ class FinancePage(webapp2.RequestHandler):
         params = {
             'sent': self.request.get('submit', ""),
             'message': "finance",
-            'page_num':1
+            'page_num': 1,
+            'color': 'orange'
         }
 
         template = JINJA_ENVIRONMENT.get_template('finance.html')
@@ -187,13 +193,16 @@ class FinancePage2(webapp2.RequestHandler):
     def get(self):
         self.response.write('Call THIS NUMBER to cancel with ' + me.bank)
         template = JINJA_ENVIRONMENT.get_template('index.html')
-        self.response.write(template.render({'message': "finance","bank":me.bank}))
+        self.response.write(template.render({'message': "finance",
+                                             "bank": me.bank,
+                                             'color': 'orange'}))
         # to do later: use the bank in the actual html
 
 class MembershipPage(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('memberships.html')
-        self.response.write(template.render({'message': "Manage Benefits"}))
+        self.response.write(template.render({'message': "Manage Benefits",
+                                             'color': 'red'}))
 
 #stores which banks the user uses
 class StoreBank(webapp2.RequestHandler):
@@ -280,7 +289,8 @@ class UploadCertificate(webapp2.RequestHandler):
 class CertificateForm(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('certificateform.html')
-        self.response.write(template.render({"user": me}))
+        self.response.write(template.render({"user": me,
+                                             'color': 'yellow'}))
 
 class CertificateStore(webapp2.RequestHandler):
     def post(self):

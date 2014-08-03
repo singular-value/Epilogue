@@ -68,6 +68,7 @@ h1, h2, h3, h4, h5 {
 
 #slide-menu {
     position: fixed;
+    overflow:scroll;
 	top: 0;
 	left: -100px;
 	bottom: 0;
@@ -96,6 +97,10 @@ body.menu-active nav#slide-menu ul { left: 0px; opacity: 1; }
     font-family: 'Open Sans', sans-serif;
     font-weight:100;
     font-size: 18px;
+
+    -moz-transition: all 300ms;
+	-webkit-transition: all 300ms;
+	transition: all 300ms;
 }
 #slide-menu li:hover {
     background-color: #666;
@@ -103,6 +108,16 @@ body.menu-active nav#slide-menu ul { left: 0px; opacity: 1; }
 #slide-menu i {
     margin-right: 20px;
 }
+#slide-menu .color-strip {
+    position: absolute;
+    width: 5px;
+    height: 86px;
+}
+.color-strip.yellow     { background-color: #DFD288 }
+.color-strip.gold       { background-color: #DAA779 }
+.color-strip.orange     { background-color: #D57F75 }
+.color-strip.red        { background-color: #D2556F }
+.color-strip.pink       { background-color: #D03671 }
 
 div#content {
     position: fixed;
@@ -126,12 +141,18 @@ div#content {
 	-webkit-transition: all 300ms;
 	transition: all 300ms;
 }
+#content .color-strip {
+    position: absolute;
+    width:100%;
+    height:5px;
+}
+
 body.menu-active div#content { left: 284px; border-radius: 7px 0 0 7px; }
 body.menu-active div#content .menu-trigger { top: 23px; }
 
 div.menu-trigger {
     position: fixed;
-    top: 10px;
+    top: 15px;
     left: 10px;
     width: 36px;
     height: 36px;

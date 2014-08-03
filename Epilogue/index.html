@@ -5,7 +5,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href='http://fonts.googleapis.com/css?family=Lora:400,400italic|Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-    <link rel="icon" href="favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
     <title>Epilogue | {% block title %}title{% endblock %}</title>
 
@@ -23,16 +23,27 @@
     <nav id="slide-menu">
       <ul>
         <a href="/next"><li>&nbsp;</li></a>
-        <a href="/certificate"><li><i class="fa fa-pencil"></i> Edit Information</li></a>
-        <a href="/social"><li><i class="fa fa-comment"></i> Delete Social Media</li></a>
-        <a href="/finance"><li><i class="fa fa-money"></i> Deal with Finances</li></a>
-        <a href="/memberships"><li><i class="fa fa-plus"></i> Manage Benefits</li></a>
-        <a href="/funeral"><li><i class="fa fa-flag"></i> Plan Memorial</li></a>
+        <a href="/certificate">
+          <div class="color-strip yellow"></div>
+          <li><i class="fa fa-pencil"></i> Edit Information</li></a>
+        <a href="/social">
+          <div class="color-strip gold"></div>
+          <li><i class="fa fa-comment"></i> Delete Social Media</li></a>
+        <a href="/finance">
+          <div class="color-strip orange"></div>
+          <li><i class="fa fa-money"></i> Deal with Finances</li></a>
+        <a href="/memberships">
+          <div class="color-strip red"></div>
+          <li><i class="fa fa-plus"></i> Manage Benefits</li></a>
+        <a href="/funeral">
+          <div class="color-strip pink"></div>
+          <li><i class="fa fa-flag"></i> Plan Memorial</li></a>
       </ul>
     </nav>
 
     <!-- MENY CONTENTS -->
     <div id="content">
+      <div class="color-strip {{ color | default('no_argument') }}"></div>
       <div class="menu-trigger"></div>
 
       {% block main_content %}
