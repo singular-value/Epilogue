@@ -27,6 +27,11 @@ providers = {
     # add more here
 }
 
+class ResetPage(webapp2.RequestHandler):
+    def get(self):
+        me = User()
+        self.response.write("Reset")
+
 # THIS ENTIRE CLASS IS DEPRECATED
 class MainPage(webapp2.RequestHandler):
     def get(self):
@@ -294,6 +299,9 @@ class UploadCertificate(webapp2.RequestHandler):
 
 class CertificateForm(webapp2.RequestHandler):
     def get(self):
+        print me.name
+        print me.address
+        print "^INFOOOOO"
         template = JINJA_ENVIRONMENT.get_template('certificateform.html')
         self.response.write(template.render({"user": me,
                                              'color': 'yellow'}))
@@ -509,5 +517,6 @@ application = webapp2.WSGIApplication([
     ('/donotcontact', FormFiller.DoNotContactPage),
     ('/google', GooglePage),
     ('/dropbox', DropBoxPage),
-    ('/stripetest', StripeTest)
+    ('/stripetest', StripeTest),
+    ('/reset', ResetPage)
 ], debug=True)
