@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-12">
         <h1>{{ message }}</h1>
-        <p>Click on an icon to begin canceling services</p>
+        <p>Click on an icon to begin canceling services.</p>
       </div>
     </div>
   </div>
@@ -27,7 +27,7 @@
        Snail Mail sent via Lob!
     </div></div>
     {% endif %}
-
+    <h2>Online Forms</h2>
   <div class="row">
   <div class="col-md-2">
     <a class="{% if user.did_email %} deactivated {% endif %}" href="/emailoptout"><i class="fa fa-envelope fa-5x"></i></a>
@@ -50,6 +50,7 @@
     <p>Update Postal Service</p>
   </div>
   </div>
+    <h2>Snail Mail via Lob</h2>
   <div class="row">
    <div class="col-md-2">
     <a class="{% if user.did_google %} deactivated {% endif %}" href="/google" ><i class="fa fa-google fa-5x"></i></a>
