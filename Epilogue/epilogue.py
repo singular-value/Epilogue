@@ -7,6 +7,7 @@ import webapp2
 lob.api_key = 'test_3aa918f64396a4f31c68c80f3238a617d8f'
 from models import User
 me = User()
+status = 0
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -16,6 +17,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
+        status = 1
         template = JINJA_ENVIRONMENT.get_template('mainpageform.html')
         self.response.write(template.render({'message': "index"}))
 
@@ -39,14 +41,24 @@ class LoginPage(webapp2.RequestHandler):
         )
 
         # address of people / organizations to send
-        yourAddress = lob.Address.create(
-            name='Hoe Smith',
-            address_line1='104, Printing Boulevard',
-            address_city='Boston',
-            address_state='MA',
-            address_country='US',
-            address_zip='12345'
-        )
+        if me.company is 'Twitter':
+            yourAddress = lob.Address.create(
+                name='Hoe Smith',
+                address_line1='104, Printing Boulevard',
+                address_city='Boston',
+                address_state='MA',
+                address_country='US',
+                address_zip='12345'
+            )
+        elif me.company is 'PayPal':
+            yourAddress = lob.Address.create(
+                name='Hoe Smith',
+                address_line1='104, Printing Boulevard',
+                address_city='Boston',
+                address_state='MA',
+                address_country='US',
+                address_zip='12345'
+            )
 
         # pre-made letter that will be sent to businesses
         letter = lob.Object.create(
@@ -90,16 +102,28 @@ class SocialPage(webapp2.RequestHandler):
 
 class FinancePage(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('index.html')
+        template = JINJA_ENVIRONMENT.get_template('finance.html')
         self.response.write(template.render({'message': "finance"}))
 
+class FinancePage2(webapp2.RequestHandler):
+    def get(self):
+        self.response.write('Call THIS NUMBER to cancel with ' + me.bank)
+        template = JINJA_ENVIRONMENT.get_template('index.html')
+        self.response.write(template.render({'message': "finance","bank":me.bank}))
+        # to do later: use the bank in the actual html
 
 class MembershipPage(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(template.render({'message': "membership"}))
 
+#stores which banks the user uses
+class StoreBank(webapp2.RequestHandler):
+    def post(self):
+        me.bank = self.request.get('bank')
+        self.redirect('/bank2')
 
+# stores most of the user's data
 class Store(webapp2.RequestHandler):
     def post(self):
         print self.request
@@ -112,6 +136,7 @@ class Store(webapp2.RequestHandler):
         me.state = self.request.get('state')
         me.country = self.request.get('country')
         me.zip = self.request.get('zip')
+        me.company = self.request.get('company')
 
         self.redirect('/login') #TAKE THEM TO THE NEXT PAGE HERE
 
@@ -134,7 +159,9 @@ application = webapp2.WSGIApplication([
     ('/social', SocialPage),
     ('/finance', FinancePage),
     ('/memberships', MembershipPage),
-    ('/store', Store),
+    ('/store', Store), # doesnt do anything just captures post
+    ('/storeBank', StoreBank), # doesnt do anything just captures post
+    ('/bank2', FinancePage2),
     ('/certificate-upload', UploadCertificate),
     ('/certificate-form', CertificateForm),
 ], debug=True)
