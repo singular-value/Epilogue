@@ -1,9 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends "index.html" %}
+{% block main_content %}
+    <title> What are your major banks?</title>
+    <form id="form_register" action="/storeBank" method="post" class="well form-horizontal">
+        <fieldset>
+            <input type="hidden" name="_csrf_token" >
+            <div class="form-actions">
+                <div><textarea name="bank" rows="3" cols="60"></textarea></div>
+                <button type="submit" class="btn btn-primary">Sign up</button>
+            </div>
 
-</body>
-</html>
+        </fieldset>
+    </form>
+            <body> What are your major banks?</body>
+
+{% endblock %}
