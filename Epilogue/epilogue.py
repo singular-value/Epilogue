@@ -177,7 +177,8 @@ class FinancePage(webapp2.RequestHandler):
         params = {
             'sent': self.request.get('submit', ""),
             'message': "finance",
-            'page_num':1
+            'page_num':1,
+            'job_id': self.request.get('job',"")
         }
 
         template = JINJA_ENVIRONMENT.get_template('finance.html')
@@ -252,7 +253,7 @@ class StoreBank(webapp2.RequestHandler):
 
         print job
 
-        self.redirect('/finance?submit=true')
+        self.redirect('/finance?submit=true&job=' + job["id"] )
 
 # stores most of the user's data
 class Store(webapp2.RequestHandler):
