@@ -18,7 +18,7 @@ class MainPage(webapp2.RequestHandler):
 
 class LoginPage(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('index.html')
+        template = JINJA_ENVIRONMENT.get_template('main.html')
         self.response.write(template.render({'message': "login"}))
 
 
