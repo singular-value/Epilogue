@@ -311,9 +311,13 @@ class CertificateStore(webapp2.RequestHandler):
         me.your_relationship = self.request.get('your_relationship')
         me.your_address = self.request.get('your_address')
 
-        me.did_deathcertificate = True
+        if me.did_deathcertificate:
+            self.redirect('/next?certificate=edit');
+        else:
+            me.did_deathcertificate = True
+            self.redirect('/next?certificate=new');
 
-        self.redirect('/next')
+
 
 class GooglePage(webapp2.RequestHandler):
     def get(self):
@@ -428,7 +432,9 @@ class DidSocial(webapp2.RequestHandler):
 class NextPage(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('next.html')
-        self.response.write(template.render({'message': "certificate"}))
+        params = {'message': "certificate",
+                  'certificate': self.request.get('certificate', "")}
+        self.response.write(template.render(params))
 
 class StripeTest(webapp2.RequestHandler):
     def get(self):

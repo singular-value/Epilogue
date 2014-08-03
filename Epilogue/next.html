@@ -1,27 +1,51 @@
 {% extends "index.html" %}
 {% block title %}This{% endblock %}
 {% block main_content %}
- <div class="container top-margin">
+ <div class="container top-margin" style="text-align: center; margin-top: 5%">
 
    <img id="main-logo" src="/stylesheets/img/logo-large.png"/>
 
-   <div class="row">
-     <div class="col-md-12">
-      <h1>Thanks!</h1>
-         <h2>Now that we have your information, let us help you complete your tasks. Pick a section below to get started.</h2>
-     </div>
-   </div>
-
-
-   <div class="row">
-     <div class="col-md-6">
-      <a href="/social"><img class="main-page-img" src="/stylesheets/img/image1.jpg"/></a>
-     </div>
-     <form action='/social'> <button type="submit"  class="btn btn-primary">Cancel Social Media</button></form>
-        <form action='/finance'> <button type="submit"  class="btn btn-primary">Deal with Finances</button></form>
-        <form action='/memberships'> <button type="submit"  class="btn btn-primary">Manage Benefits</button></form>
-        <form action='/certificate'> <button type="submit"  class="btn btn-primary">Plan the Memorial</button></form>
-
+   {% if certificate=="new" %}
+     <h1>Thanks!</h1>
+     <h3>Now that we have your information, let us help you complete your tasks. Pick a section below to get started.</h2>
+   {% elif certificate=="edit" %}
+   <h1>Thanks!</h1>
+     <h3>We've updated your information, and would like to help you complete your tasks. Pick a section below to get started.</h2>
+   {% else %}
+    <h3>We would like to help you complete your tasks. Pick a section below to get started.</h2></h2>
+   {% endif %}
+  </div>
+<div class="container-fluid bottom-half">
+   <div class="row no-gutter" style="overflow:hidden;">
+     <a href="/social" class="main-button">
+       <div class="col-sm-3">
+         <p class="main-page-img-text"><i class="fa fa-comment fa-2x"></i><br>Delete Social Media</p>
+         <div class="overlay"></div>
+        <img class="main-page-img" src="/stylesheets/img/image1.jpg"/>
+       </div>
+     </a>
+     <a href="/finance" class="main-button">
+       <div class="col-sm-3">
+         <p class="main-page-img-text"><i class="fa fa-money fa-2x"></i><br>Deal with Finances</p>
+         <div class="overlay"></div>
+        <img class="main-page-img" src="/stylesheets/img/image2.jpg"/>
+       </div>
+     </a>
+     <a href="/memberships" class="main-button">
+       <div class="col-sm-3">
+         <p class="main-page-img-text"><i class="fa fa-plus fa-2x"></i><br>Manage Benefits</p>
+         <div class="overlay"></div>
+        <img class="main-page-img" src="/stylesheets/img/image3.jpg"/>
+       </div>
+     </a>
+     <a href="/certificate" class="main-button">
+       <div class="col-sm-3">
+         <p class="main-page-img-text"><i class="fa fa-flag fa-2x"></i><br>Plan Memorial</p>
+         <div class="overlay"></div>
+        <img class="main-page-img" src="/stylesheets/img/image4.jpg"/>
+      </div>
+     </a>
    </div>
  </div>
+</div>
 {% endblock %}

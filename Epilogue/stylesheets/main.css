@@ -166,8 +166,49 @@ a.deactivated {
     margin: 0 auto;
 }
 
-.main-page-img {
-    width: 100%;
+.bottom-half {
+    position:absolute;
+    overflow:hidden;
+    width:100%;
+    bottom:0;
+    top:50%;
+}
+.main-button {
+    width:25%;
+    overflow:hidden;
+}
+.main-button .overlay{
+    position:absolute;
+    width:100%;
+    height: 100%;
+    background: rgba(223, 210, 136, .3);
+    opacity:0;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.main-button:hover .overlay {
+    opacity:1;
+}
+
+.main-page-img-text {
+    position:absolute;
+    top:30%;
+    width:100%;
+    text-align:center;
+    color:white;
+    display:table-cell;
+    font-weight:700;
+}
+.main-page-img-text i {
+    margin:10px;
+}
+
+.no-gutter .col-sm-3 {
+    padding-left:0;
+    padding-right:0;
 }
 
 .dropzone,
