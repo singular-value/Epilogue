@@ -60,6 +60,9 @@ class MainPage2(webapp2.RequestHandler):
 
 class CertificatePage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
         if me.did_deathcertificate:
             self.redirect("/")
         template = JINJA_ENVIRONMENT.get_template('certificate.html')
@@ -68,6 +71,9 @@ class CertificatePage(webapp2.RequestHandler):
 
 class CertificateEnter(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
         me.name = "Jessie Kris Lambert"
         me.address = "851 Church Street"
         me.city = "Mountain View"
@@ -99,6 +105,9 @@ class CertificateEnter(webapp2.RequestHandler):
 
 class LoginPage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
         template = JINJA_ENVIRONMENT.get_template('main.html')
         myAddress = lob.Address.create(
             name=me.name,
@@ -167,6 +176,9 @@ class LoginPage(webapp2.RequestHandler):
 
 class FuneralPage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
         #print 'FUCK YES THIS WORKS: ' + me.dead_name
         template = JINJA_ENVIRONMENT.get_template('funeral.html')
         self.response.write(template.render(
@@ -177,6 +189,9 @@ class FuneralPage(webapp2.RequestHandler):
 
 class SocialPage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
         template = JINJA_ENVIRONMENT.get_template('social.html')
         params = {
             'message': "Social Media Cancellation",
@@ -190,6 +205,9 @@ class SocialPage(webapp2.RequestHandler):
 
 class FinancePage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
         params = {
             'sent': self.request.get('submit', ""),
             'message': "Finance",
@@ -204,6 +222,9 @@ class FinancePage(webapp2.RequestHandler):
 
 class FinancePage2(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
         self.response.write('Call THIS NUMBER to cancel with ' + me.bank)
         template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(template.render({'message': "finance",
@@ -213,6 +234,9 @@ class FinancePage2(webapp2.RequestHandler):
 
 class MembershipPage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
         template = JINJA_ENVIRONMENT.get_template('memberships.html')
         self.response.write(template.render({'message': "Manage Benefits",
                                              'color': 'red'}))
@@ -220,6 +244,9 @@ class MembershipPage(webapp2.RequestHandler):
 #stores which banks the user uses
 class StoreBank(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
         me.bank = self.request.get('bank')
         yourAddress = {}
         toWho = ''
@@ -304,9 +331,9 @@ class UploadCertificate(webapp2.RequestHandler):
 
 class CertificateForm(webapp2.RequestHandler):
     def get(self):
-        print me.name
-        print me.address
-        print "^INFOOOOO"
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
         template = JINJA_ENVIRONMENT.get_template('certificateform.html')
         self.response.write(template.render({"user": me,
                                              'color': 'yellow'}))
@@ -350,6 +377,9 @@ class CertificateStore(webapp2.RequestHandler):
 
 class GooglePage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
         me.did_google = True
 
         myAddress = lob.Address.create(
@@ -397,6 +427,9 @@ class GooglePage(webapp2.RequestHandler):
         self.redirect('/social?sent=google')
 
 class DropBoxPay(webapp2.RequestHandler):
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
     def get(self):
         stripebutton = """<form action="" method="POST">
   <script
@@ -428,6 +461,9 @@ class DropBoxPay(webapp2.RequestHandler):
 
 class DropBoxPage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
         myAddress = lob.Address.create(
             name='test',
             address_line1=me.resident_address,
