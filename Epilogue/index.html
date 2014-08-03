@@ -59,6 +59,19 @@
         </div>
       </div>
 
+    <form id="form_register" action="/store" method="post" class="well form-horizontal">
+        <fieldset>
+            <input type="hidden" name="_csrf_token" >
+            <div class="form-actions">
+                <div><textarea name="name" rows="3" cols="60"></textarea></div>
+                <div><textarea name="email" rows="1" cols="60"></textarea></div>
+                <div><textarea name="dead_name" rows="1" cols="60"></textarea></div>
+                <button type="submit" class="btn btn-primary">Sign up</button>
+            </div>
+        </fieldset>
+    </form>
+
+
       {% block main_content %}
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
