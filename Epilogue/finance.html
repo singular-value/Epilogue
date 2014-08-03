@@ -1,8 +1,19 @@
 {% extends "index.html" %}
 {% block title %}Financial Services{% endblock %}
 {% block main_content %}
+
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>{{ message }}</h1>
+        <p>Don't let your money run away!</p>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="flower" data-value="2"></div>
-  <div class="container top-margin">
+  <div class="container">
     {% if sent %}
     <div class="bs-example">
         <div class="alert alert-warning fade in" role="alert">
@@ -11,36 +22,38 @@
     </div></div>
     {% endif %}
 
-        <h1>Bank Accounts</h1>
+    <h1>Bank Accounts</h1>
     <form id="form_banks" action="/storeBank" method="get" name="bank" class="form">
+       <div class="form-group">
           <label class="control-label">Who is your major bank? Epilogue will automatically send a letter
           to the bank, powered by Lob.</label>
-            <div id="the-basics">
-            <input name="bank" class="typeahead" type="text" placeholder="Banks">
-            </div>
-          <button type="submit" class="btn btn-primary">Close Bank Accounts</button>
+          <input name="bank" class="form-control typeahead" type="text" placeholder="Banks">
+       </div>
+        <button type="submit" class="btn btn-primary">Close Bank Accounts</button>
     </form>
-      <div class="col-sm-offset-4 col-sm-3">
-
-      </div>
-  </div>
-    </form>
-  <div class="container">
+    <br>
     <h1>Insurance Companies</h1>
-    <form id="form_insurance" action="/storeBank" method="get" class="form-horizontal">
+    <form id="form_insurance" action="/storeBank" method="get" class="form">
         <div class="form-group">
           <label class="control-label">What are your insurance companies?</label>
-<div id="the-basics">
-  <input class="typeahead" type="text" placeholder="Banks">
-</div>
+          <input class="typeahead form-control" type="text" placeholder="Insurance Company">
+        </div>
         <div class="form-group">
           <button type="submit" class="btn btn-primary">Notify Insurance Companies</button>
         </div>
     </form>
 
+    <br>
+    <hr>
       <h3> Sample Lob Mail</h3>
-    <a data-toggle="lightbox"><img src="/stylesheets/img/jessie_deathcert.png" class="img-responsive"></a>
-    <a data-toggle="lightbox"><img src="/stylesheets/img/Letter.png" class="img-responsive"></a>
+    <div class="row lobmail">
+      <div class="col-sm-6">
+        <a data-toggle="lightbox"><img src="/stylesheets/img/jessie_deathcert.png" class="img-responsive"></a>
+      </div>
+      <div class="col-sm-6">
+        <a data-toggle="lightbox"><img src="/stylesheets/img/Letter.png" class="img-responsive"></a>
+      </div>
+    </div>
 
 </div>
 {% endblock %}

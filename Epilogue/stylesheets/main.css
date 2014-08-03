@@ -119,6 +119,11 @@ body.menu-active nav#slide-menu ul { left: 0px; opacity: 1; }
 .color-strip.red        { background-color: #D2556F }
 .color-strip.pink       { background-color: #D03671 }
 
+.lobmail img {
+    width:100%;
+    border: grey 1px solid;
+}
+
 div#content {
     position: fixed;
 	top: 0;
