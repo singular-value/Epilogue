@@ -103,7 +103,7 @@ class SocialPage(webapp2.RequestHandler):
 class FinancePage(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('finance.html')
-        self.response.write(template.render({'message': "finance"}))
+        self.response.write(template.render({'message': "finance", 'page_num':1}))
 
 class FinancePage2(webapp2.RequestHandler):
     def get(self):

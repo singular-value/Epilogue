@@ -1,11 +1,34 @@
 {% extends "index.html" %}
+{% block title %}Verify Certificate Form{% endblock %}
 {% block main_content %}
 <div class="container">
  <div class="row">
    <div class="col-md-12">
      <h1>Certificate Form</h1>
-    <form id="form_register" action="/store" method="post" class="form">
+    <form id="form_register" action="/store" method="post" class="horizontal-form">
         <div class="form-group">
+          name
+          sex
+          ssn
+          age-at-death
+          date-of-birth
+          date-of-death
+          birthplace
+          resident-state
+          resident-county
+          resident-town
+          resident-address
+          resident-apptnum
+          resident-zip
+          us-armed forces (2 options)
+          fathers-name
+          mothers-name
+          surviving-spouse-name
+          marital-status (6 options)
+          your-name
+          your-relationship
+          your-address
+
             <input type="text" class="form-control" name="name" value="{{ user.dead_name }}"><br>
         </div>
     </form>

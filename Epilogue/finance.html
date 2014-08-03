@@ -1,16 +1,47 @@
 {% extends "index.html" %}
+{% block title %}Financial Services{% endblock %}
 {% block main_content %}
-    <title> What are your major banks?</title>
-    <form id="form_register" action="/storeBank" method="post" class="well form-horizontal">
-        <fieldset>
-            <input type="hidden" name="_csrf_token" >
-            <div class="form-actions">
-                <div><textarea name="bank" rows="3" cols="60"></textarea></div>
-                <button type="submit" class="btn btn-primary">Sign up</button>
-            </div>
-
-        </fieldset>
+<div class="flower" data-value="2"></div>
+<div id="1" class="content-page">
+  <div class="container">
+    <h1> What are your major banks?</h1>
+    <form id="form_banks" action="/storeBank" method="post" class="form-horizontal">
+        <div class="form-group">
+          <label for="inputBank" class="col-sm-2 control-label">Bank</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Bank" id="inputBank"><br>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Cancel Banks</button>
+          </div>
+        </div>
     </form>
-            <body> What are your major banks?</body>
-
+  </div>
+</div>
+<div id="2" class="content-page">
+  <div class="container">
+    <h1> What are your insurance companies?</h1>
+    <form id="form_insurance" action="/storeBank" method="post" class="form-horizontal">
+        <div class="form-group">
+          <label for="inputInsurance" class="col-sm-2 control-label">Insurance</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Insurance Companies" id="inputInsurance"><br>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Insurance Companies</button>
+          </div>
+        </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+{% block jslib %}
+<script>
+  pageNum = {{ page_num }};
+</script>
+<script src="/scripts/flow.js"></script>
 {% endblock %}
