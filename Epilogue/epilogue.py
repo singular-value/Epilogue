@@ -16,10 +16,10 @@ class MainPage(webapp2.RequestHandler):
         self.response.write(template.render({'message': "index"}))
 
 
-class LoginPage(webapp2.RequestHandler):
+class CertificatePage(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('main.html')
-        self.response.write(template.render({'message': "login"}))
+        template = JINJA_ENVIRONMENT.get_template('certificate.html')
+        self.response.write(template.render({'message': "certificate"}))
 
 
 class FuneralPage(webapp2.RequestHandler):
@@ -48,7 +48,7 @@ class MembershipPage(webapp2.RequestHandler):
 
 application = webapp2.WSGIApplication([
     ('/', MainPage),
-    ('/login', LoginPage),
+    ('/certificate', CertificatePage),
     ('/funeral', FuneralPage),
     ('/social', SocialPage),
     ('/finance', FinancePage),
