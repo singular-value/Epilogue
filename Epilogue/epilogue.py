@@ -51,7 +51,7 @@ class MainPage2(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if not user:
-            self.redirect(users.create_login_url(users.create_login_url(self.request.uri)))
+            self.redirect(users.create_login_url(self.request.uri))
         if me.did_deathcertificate:
             self.redirect("/certificate-form")
         template = JINJA_ENVIRONMENT.get_template('frontpage.html')
