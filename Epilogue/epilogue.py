@@ -1,3 +1,4 @@
+import json
 import os, lob
 import urllib, cgi
 import time
@@ -180,11 +181,16 @@ class FuneralPage(webapp2.RequestHandler):
         if not user:
             self.redirect(users.create_login_url(self.request.uri))
         #print 'FUCK YES THIS WORKS: ' + me.dead_name
+        results = json.load(urllib.urlopen("https://www.kimonolabs.com/api/bwaehlle?apikey=bxL2A8JCqcZRr8icqL2dlhMvGFoiNus6"))
+        d = results["results"]["yelp"]
+        for i in range(3):
+            print d[i]['reviews']['text'].encode("utf-8")
+        arr = ['a','b','c','1','2','3','4','5','6',]
         template = JINJA_ENVIRONMENT.get_template('funeral.html')
         self.response.write(template.render(
             {'message': "Arrange Funeral Services",
              'user': me,
-             'color': 'pink'}))
+             'color': 'pink', 'reviews': arr}))
 
 
 class SocialPage(webapp2.RequestHandler):
