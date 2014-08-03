@@ -34,6 +34,10 @@ h1, h2, h3, h4, h5 {
     padding-bottom:30px;
 }
 
+a.deactivated {
+    pointer-events: none;
+    color: grey;
+}
 
 
 .content-page {

@@ -11,26 +11,27 @@
     </div>
   </div>
 </div>
+
 <div class="top-margin container">
   <div class="row">
   <div class="col-md-2">
-    <a href=""><i class="fa fa-envelope fa-5x"></i></a>
+    <a class="{% if user.did_email %} deactivated {% endif %}" href="/emailoptout"><i class="fa fa-envelope fa-5x"></i></a>
     <p>Cancel Email Subscriptions</p>
   </div>
   <div class="col-md-2">
-    <a href=""><i class="fa fa-facebook fa-5x"></i></a>
+    <a class="{% if user.did_fb %} deactivated {% endif %}" href="/fb"><i class="fa fa-facebook fa-5x"></i></a>
     <p>Memorialize Facebook Account</p>
   </div>
   <div class="col-md-2">
-    <a href=""><i class="fa fa-linkedin fa-5x"></i></a>
+    <a class="{% if user.did_linkedin %} deactivated {% endif %}" href="/linkedin"><i class="fa fa-linkedin fa-5x"></i></a>
     <p>Update LinkedIn Page</p>
   </div>
   <div class="col-md-2">
-    <a href=""><i class="fa fa-phone fa-5x"></i></a>
-    <p>Add to Do-Not-Call list</p>
+    <a class="{% if user.did_phone %} deactivated {% endif %}" href="/donotcontact"><i class="fa fa-phone fa-5x"></i></a>
+    <p>Add to Do-Not-Contact list</p>
   </div>
   <div class="col-md-2">
-    <a href=""><i class="fa fa-home fa-5x"></i></a>
+    <a class="{% if user.did_postoffice %} deactivated {% endif %}" href="/addresschange"><i class="fa fa-home fa-5x"></i></a>
     <p>Update Postal Service</p>
   </div>
 </div>

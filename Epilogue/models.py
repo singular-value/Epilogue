@@ -60,3 +60,10 @@ class User(User):
     your_address = ndb.StringProperty()
 
     company = ndb.StringProperty()
+
+    did_fb = ndb.BooleanProperty(default = False)
+    did_linkedin = ndb.BooleanProperty(default = False)
+    did_email = ndb.BooleanProperty(default = False)
+    did_phone = ndb.BooleanProperty(default = False)
+    did_postoffice = ndb.BooleanProperty(default = False)
+    did_deathcertificate = ndb.BooleanProperty(default = False)

@@ -4,6 +4,7 @@ import urllib, cgi
 import jinja2
 import webapp2
 from google.appengine.api import users
+import FormFiller
 
 lob.api_key = 'test_3aa918f64396a4f31c68c80f3238a617d8f'
 from models import User
@@ -45,6 +46,8 @@ class MainPage2(webapp2.RequestHandler):
 
 class CertificatePage(webapp2.RequestHandler):
     def get(self):
+        if me.did_deathcertificate:
+            self.redirect("/")
         template = JINJA_ENVIRONMENT.get_template('certificate.html')
         self.response.write(template.render({'message': "certificate"}))
 
@@ -118,7 +121,11 @@ class FuneralPage(webapp2.RequestHandler):
 class SocialPage(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('social.html')
-        self.response.write(template.render({'message': "social media cancellation"}))
+        params = {
+            'message': "social media cancellation",
+            'user': me
+        }
+        self.response.write(template.render(params))
 
 
 class FinancePage(webapp2.RequestHandler):
@@ -169,6 +176,8 @@ class UploadCertificate(webapp2.RequestHandler):
 
 class CertificateForm(webapp2.RequestHandler):
     def get(self):
+        if me.did_deathcertificate:
+            self.redirect("/")
         template = JINJA_ENVIRONMENT.get_template('certificateform.html')
         self.response.write(template.render({"user": me}))
 
@@ -201,6 +210,8 @@ class CertificateStore(webapp2.RequestHandler):
         me.your_relationship = self.request.get('your_relationship')
         me.your_address = self.request.get('your_address')
 
+        me.did_deathcertificate = True
+
         self.redirect('/')
 
 application = webapp2.WSGIApplication([
@@ -217,5 +228,11 @@ application = webapp2.WSGIApplication([
     ('/bank2', FinancePage2),
     ('/certificate-upload', UploadCertificate),
     ('/certificate-form', CertificateForm),
-    ('/certificate-store', CertificateStore)
+    ('/certificate-store', CertificateStore),
+
+    ('/fb', FormFiller.FBPage),
+    ('/linkedin', FormFiller.LinkedInPage),
+    ('/emailoptout', FormFiller.EmailOptOutPage),
+    ('/addresschange', FormFiller.AddressChangePage),
+    ('/donotcontact', FormFiller.DoNotContactPage)
 ], debug=True)
