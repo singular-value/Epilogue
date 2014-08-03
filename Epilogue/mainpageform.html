@@ -1,14 +1,19 @@
 {% extends "index.html" %}
 {% block main_content %}
-<form id="form_register" action="/store" method="post" class="well form-horizontal">
-    <fieldset>
-        <input type="hidden" name="_csrf_token" >
-        <div class="form-actions">
-            <div><textarea name="name" rows="3" cols="60"></textarea></div>
-            <div><textarea name="email" rows="1" cols="60"></textarea></div>
-            <div><textarea name="dead_name" rows="1" cols="60"></textarea></div>
-            <button type="submit" class="btn btn-primary">Sign up</button>
-        </div>
-    </fieldset>
-</form>
+    <form id="form_register" action="/store" method="post" class="well form-horizontal">
+        <fieldset>
+            <input type="hidden" name="_csrf_token" >
+            <div class="form-actions">
+                <div><textarea name="name" rows="3" cols="60"></textarea></div>
+                <div><textarea name="email" rows="1" cols="60"></textarea></div>
+                <div><textarea name="dead_name" rows="1" cols="60"></textarea></div>
+                <div><textarea name="address" rows="1" cols="60"></textarea></div>
+                <div><textarea name="city" rows="1" cols="60"></textarea></div>
+                <div><textarea name="state" rows="1" cols="60"></textarea></div>
+                <div><textarea name="country" rows="1" cols="60"></textarea></div>
+                <div><textarea name="zip" rows="1" cols="60"></textarea></div>
+                <button type="submit" class="btn btn-primary">Sign up</button>
+            </div>
+        </fieldset>
+    </form>
 {% endblock %}
